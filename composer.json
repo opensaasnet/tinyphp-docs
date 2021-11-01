@@ -10,7 +10,7 @@
     "version": "1.0.0",	
 	"description" : "docs for tinyphp frameworks",
 	"require" : {
-		"php" : ">=7.4",
-		"saasjit/tinyphp-framework" : ">1"
+		"php" : ">=7.0",
+		"saasjit/tinyphp-framework" : "master-dev"
 	}
 }
