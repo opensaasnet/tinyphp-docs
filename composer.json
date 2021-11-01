@@ -1,0 +1,14 @@
+{
+	"autoload" : {
+		"psr-4" : {
+			"Tiny\\Docs\\" : "src/Docs"
+		}
+	},
+	"name" : "saasjit/tinyphp-docs",
+	"type" : "library",
+	"description" : "docs for tinyphp frameworks",
+	"require" : {
+		"php" : ">=7.4",
+		"saasjit/tinyphp-framework" : ">1"
+	}
+}
