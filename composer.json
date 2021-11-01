@@ -6,7 +6,6 @@
 	},
 	"name" : "saasjit/tinyphp-docs",
 	"type" : "library",
-    "minimum-stability": "stable",
     "version": "1.0.0",	
 	"description" : "docs for tinyphp frameworks",
 	"require" : {
