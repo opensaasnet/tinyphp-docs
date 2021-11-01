@@ -4,6 +4,7 @@
 			"Tiny\\Docs\\" : "src/Docs"
 		}
 	},
+	"version" : "dev-master",
 	"name" : "saasjit/tinyphp-docs",
 	"type" : "library",
 	"description" : "docs for tinyphp frameworks",
