@@ -1,14 +1,18 @@
 {
-	"autoload" : {
-		"psr-4" : {
-			"Tiny\\Docs\\" : "src/Docs"
-		}
-	},
-	"minimum-stability" : "dev",
-	"name" : "saasjit/tinyphp-docs",
-	"type" : "library",
-	"description" : "docs for tinyphp frameworks",
-	"require" : {
-		"php" : ">=7.0"
-	}
+    "name": "saasjit/tinyphp-docs",
+    "description": "Documentation of the TinyPHP for Frameworks",
+    "license" : "Apache-2.0",
+    "type": "library",
+    "require": {
+        "php": ">=7.0"
+    },
+    "author": {
+        "name": "tinycn",
+        "email": "tinycn@qq.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tiny\\Docs\\": "src/Docs"
+        }
+    }
 }

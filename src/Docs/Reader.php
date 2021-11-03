@@ -15,7 +15,7 @@
 namespace Tiny\Docs;
 
 // 定义文档读取的路径常量
-define('TINY_DOCS_ROOT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+define('TINY_DOCS_ROOT_PATH', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR);
 
 /**
  * 文档阅读类
