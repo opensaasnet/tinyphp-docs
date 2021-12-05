@@ -1,7 +1,7 @@
 TinyPHP For Framework   
 ====
 
-* 编码规范  
+* [编码规范](https://github.com/saasjit/tinyphp-docs/tree/master/docs)
   * [团队协作规范](https://github.com/saasjit/tinyphp/blob/master/docs/team/README.md)
   * [PHP编码规范](https://github.com/saasjit/tinyphp/blob/master/docs/coding/README.md)
   * [SQL编码规范](https://github.com/saasjit/tinyphp/blob/master/docs/sql/README.md)
