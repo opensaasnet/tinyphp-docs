@@ -1,17 +1,102 @@
 Tinyphp-framework
 ====
 
-> 一款简单的、轻量级的，经过日PV十亿级别的生产环境检验的 MVC 框架。    
+> 一款经过日PV十亿级别生产环境检验的 MVC PHP框架。    
 > 主要应用于分布式的、高并发的生成环境。
 > 适应于多人团队协作;    
 > 支持多环境和分布式处理；    
 > 适用于 Web/Console/RPC等运行环境，包括单一命令行文件打包，多任务的服务端守护进程等。   
 
-> demo/tinyphp：[https://github.com/saasjit/tinyphp.git](https://github.com/saasjit/tinyphp)   
-> 中文文档/tinyphp-docs: [https://github.com/saasjit/tinyphp-docs.git](https://github.com/saasjit/tinyphp-docs)   
-> UI组件/tinyphp-ui: [https://github.com/saasjit/tinyphp-docs.git](https://github.com/saasjit/tinyphp-docs)  
+ tinyphp
+----
+>DEMO:  适用于生产/开发环境   
+> 项目地址: [https://github.com/saasjit/tinyphp.git](https://github.com/saasjit/tinyphp)   
 
-引导
+tinyphp-docs
+----
+> 中文文档: 使用手册、标准库。
+>> 项目地址: [https://github.com/saasjit/tinyphp-docs.git](https://github.com/saasjit/tinyphp-docs)   
+
+tinyphp-ui  
+----
+> 前端UI组件库: webpack5+bootstrap5+jquery...   
+> 项目地址： : [https://github.com/saasjit/tinyphp-ui.git](https://github.com/saasjit/tinyphp-ui)  
+
+DEMO
+----
+
+### tinyphp
+
+```shell
+composer create-project saasjit/tinyphp
+
+#console运行
+php public/index.php
+
+#单文件编译
+php public/index.php --build
+
+#开启服务端守护进程
+php public/index.php -d
+
+#curl 127.0.0.1
+
+#配置文件 application/config/profile.php
+```
+
+运行环境
+----
+
+### centos
+> 适应于生产环境，依赖于lnmp-utils。   
+> lnmp-utils: Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包。    
+> 项目地址: https://github.com/saasjit/lnmp-utils    
+
+```shell
+
+git clone https://github.com/saasjit/lnmp-utils.git
+cd ./lnmp-utils
+./install.sh 
+cd /data/web/saasjit/tinyphp
+#console 
+php public/index
+#url
+http://127.0.0.1/
+
+```
+
+### docker
+>  适应于开发环境
+
+```shell
+
+#可更改/data/workspace/tinyphp为自定义IDE工作目录
+workspace=/data/workspace/
+
+docker pull centos:7
+
+docker run -d -p 80:80 -p 3306:3306 -p 8080:8080 -p 8989:8989 -p 10022:22 -v $workspace:/data/web  --name="tinyphp" --hostname="tinyphp" --restart=always -w /data/worksapce/ centos:7 /sbin/init
+
+#port 8080 
+#   用于saasjit/tinyphp-ui调试
+# npm run dev
+
+#port 8989 
+#    用于saasjit/tinyphp-ui打包详情查看
+# npm run build
+
+docker exec -it tinyphp /bin/bash
+
+git clone https://github.com/saasjit/lnmp-utils.git
+cd ./lnmp-utils
+./install.sh 
+
+cd /data/web/saasjit/tinyphp
+php public/index.php
+
+```
+
+文档
 ====
 * [运行环境](#运行环境)
     * [开发环境部署，docker](#docker)
@@ -64,67 +149,3 @@ Tinyphp-framework
                      
 
 
-运行环境
-====
-
-### centos
-> 适应于生产环境，依赖于lnmp-utils。   
-> lnmp-utils: Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包。    
-> 项目地址: https://github.com/saasjit/lnmp-utils    
-
-```shell
-
-git clone https://github.com/saasjit/lnmp-utils.git
-cd ./lnmp-utils
-./install.sh -m tinyphp
-cd /data/web/tinyphp
-php public/index.php
-
-```
-
-### docker
->  适应于开发环境
-
-```shell
-
-#可更改/data/workspace/tinyphp为自定义IDE工作目录
-workspace=/data/workspace/tinyphp
-
-docker pull centos:7
-
-docker run -d -p 80:80 -p 10022:22 -v $workspace:/data/web/tinyphp --name="tinyphp" --hostname="tinyphp" --restart=always centos:7 /sbin/init
-
-docker exec -it tinyphp /bin/bash
-
-#login docker tinyphp
-
-git clone https://github.com/saasjit/lnmp-utils.git
-cd ./lnmp-utils
-./install.sh -m tinyphp-bootstrap
-curl http://127.0.0.1
-
-```
-
-DEMO
-====
-
-### tinyphp
-
-```shell
-
-composer create-project saasjit/tinyphp
-
-cd tinyphp
-
-#运行
-php public/index.php
-
-#编译
-php public/index.php --build
-
-#开启守护进程
-php public/index.php -d
-
-#编辑具体配置文件
-vi application/config/profile.php
-```
