@@ -118,7 +118,7 @@ $default = include './default.php'。
     …
   }
 
-  protected function _get(…)
+  protected function get(…)
   {
     …
   } 

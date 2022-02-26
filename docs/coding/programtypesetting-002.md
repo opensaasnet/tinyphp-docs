@@ -173,9 +173,9 @@ $b->Function();                          // 不要写成 $b -> Function();
 
 2.4 对齐
 ----
-`【规则2-4-1】`程序的分界符‘{’和‘}’应独占一行并且位于同一列，同时与引用它们的语句左对齐。
-
-`【规则2-4-2】`{ }之内的代码块在‘{’右边数格处左对齐。
+`【规则2-4-1】`程序的命名空间,类，函数，成员函数，分界符‘{’和‘}’应独占一行并且位于同一列，同时与引用它们的语句左对齐。
+`【规则2-4-2】`程序的逻辑控制结构体，如if,else,switch,while等，分界符‘{’与上一行位于同一行，‘}’应独占一行并且位于同一列，同时与引用它们的语句左对齐。
+`【规则2-4-3】`{ }之内的代码块在‘{’右边数格处左对齐。
 
 
 示例2-4
@@ -185,22 +185,18 @@ function Function($x)
     … // program code
 }
 
-if (condition)
-{
+if (condition) {
     … // program code
 }
-else
-{
-    … // program code
-}
-
-for (initialization; condition; update)
-{
+else {
     … // program code
 }
 
-While (condition)
-{
+for (initialization; condition; update){
+    … // program code
+}
+
+while (condition) {
     … // program code
 }
 
@@ -222,19 +218,22 @@ function Function($x){
     … // program code
 }
 
-if (condition){
+if (condition)
+{
+    … // program code
+}
+else 
+{
     … // program code
 }
 
-else {
+for (initialization; condition; update) 
+{
     … // program code
 }
 
-for (initialization; condition; update){
-    … // program code
-}
-
-while (condition){
+while (condition)
+{
     … // program code
 }
 ```
@@ -250,16 +249,16 @@ while (condition){
 
 示例2-5
 ```php
-if (($very_longer_variable1 >= $very_longer_variable12)
-&& ($very_longer_variable3 <= $very_longer_variable14)
-&& ($very_longer_variable5 <= $very_longer_variable16))
+if (($veryLongerVariable1 >= $veryLongerVariable12)
+&& ($veryLongerVariable3 <= $veryLongerVariable14)
+&& ($veryLongerVariable5 <= $veryLongerVariable16))
 {
     dosomething();
 }
  
-for ($very_longer_initialization;
-     $very_longer_condition;
-     $very_longer_update)
+for ($veryLongerInitialization;
+     $veryLongerCondition;
+     $veryLongerUpdate)
 {
     dosomething();
 }
@@ -312,11 +311,9 @@ function Function($x,  $y,  $z)
     …
 }
  
-if (…)
-{
+if (…) {
     …
-    while (…)
-    {
+    while (…) {
         …
     }  // end of while
 …

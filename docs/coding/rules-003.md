@@ -104,24 +104,24 @@ function init(…)
 
 例如：
 ```php
-$g_howManyPeople;     // 全局变量
+$gHowManyPeople;     // 全局变量
 
-$g_howMuchMoney;     // 全局变量
+$gHowMuchMoney;     // 全局变量
 ```
  
 
-`【规则3-2-7】`类的私有数据成员(`protected`, `private`)加前缀_，这样可以避免数据成员与成员函数的参数同名。
+`【规则3-2-7】`类的私有数据成员(`protected`, `private`)无需加前缀，这样可以避免数据成员与成员函数的参数同名。
 
 例如：
 ```php
-private $_width = 0;
+private $width = 0;
 
-private $_height = 0;
+private $height = 0;
 
 function setValue($width, $height)
 {
-  $this->_width = width;
-  $this->_height = height;
+  $this->width = width;
+  $this->height = height;
 }
 ```
  

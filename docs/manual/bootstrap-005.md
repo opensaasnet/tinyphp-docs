@@ -28,7 +28,7 @@ class ApplicationBase
 namespace App\Common;
 
 
-class Bootstrap extend \Tiny\MVC\Bootstrap\Base
+class Bootstrap extend \Tiny\MVC\Bootstrap\Bootstrap
 {
     
     // 初始化商业化的私有公共库

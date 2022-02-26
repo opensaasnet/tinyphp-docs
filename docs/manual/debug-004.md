@@ -15,7 +15,7 @@ application实例中开启/关闭
 Tiny::currentApplication()->setDebug();
 ```
 
-Debug通过Application的Plugin方式实现
+Debug通过接口EventListener方式实现
 ----
 ```php
 Application::getInstance()->regPlugin($debug);

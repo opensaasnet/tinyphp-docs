@@ -34,22 +34,14 @@ tools/
 /* 项目根目录 */
 define('TINY_ROOT_PATH', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR);
 
-/* 加载Tiny标准库*/
-define('TINY_LIBRARY_FILE', TINY_ROOT_PATH . '/src/Tiny.php');
-include_once TINY_LIBRARY_FILE;
-
 /* 自动加载composer库 */
 define('TINY_COMPOSER_FILE', TINY_ROOT_PATH . '/vendor/autoload.php');
-if (is_file(TINY_COMPOSER_FILE)) 
-{
-    include_once TINY_COMPOSER_FILE;
-}
+include_once TINY_COMPOSER_FILE;
+
 
 /* 设置application主目录的常量; 该常量必须设置 
 *  Application run 自动识别web/console模式
 *  Profile.php 为应用配置文件
-*  ->setBootsrap(new \App\Common\Bootstrap()) 设置自定义引导类
-*  ->regPlugin(new \App\Common\Plugin()) 注册自定义插件
 *  ->run() Application运行
 */
 define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
@@ -63,72 +55,23 @@ define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
 }
 
 /* 设置是否开启运行时缓存，设置缓存内存大小参数 */ //运行时缓存仅在WEB/RPC模式下，Linux生产环境，安装了shmop内存扩展时生效
-\Tiny\Tiny::setENV([  
-    'RUNTIME_CACHE_ENABLED' => TRUE,  //默认开启 FALSE为关闭
-    'RUNTIME_CACHE_TTL' => 60,    // 缓存时长 默认60s
-    'RUNTIME_CACHE_MEMORY_MIN' => 1048576, //最小共享内存 1M
-    'RUNTIME_CACHE_MEMORY_MAX' => 104857600, //最大共享内存 100M
-    'RUNTIME_CACHE_MEMORY' => 10485760  //共享内存 10M
+\Tiny\Tiny::setENV([
 ]);
  
 /* 设置application主目录的常量; 该常量必须设置 
 *  Application run 自动识别web/console模式
 *  Profile.php 为应用配置文件
-*  ->setBootsrap(new \App\Common\Bootstrap()) 设置自定义引导类
-*  ->regPlugin(new \App\Common\Plugin()) 注册自定义插件
 *  ->run() Application运行
 */
 define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
 \Tiny\Tiny::createApplication(APPLICATION_PATH, APPLICATION_PATH . 'config/profile.php')->run();
 ```
-#### 1.2.2 入口文件设置自定义引导类  
-```php
-...
-/* 设置application主目录的常量; 该常量必须设置 
-*  Application run 自动识别web/console模式
-*  Profile.php 为应用配置文件
-*  ->setBootsrap(new \App\Common\Bootstrap()) 设置自定义引导类
-*  ->regPlugin(new \App\Common\Plugin()) 注册自定义插件
-*  ->run() Application运行
-*/
-define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
-$app = \Tiny\Tiny::createApplication(APPLICATION_PATH, APPLICATION_PATH . 'config/profile.php');
 
-/* 
-* 自动加载Application目录下的类，需先创建Application实例;
-* Bootstrap 必须继承 Tiny\MVC\Bootstrap\Base;
-* Bootstrap设置时会替换已存在继承Tiny\MVC\Bootstrap\Base的其他实例；
-* Boostrap实例在Application生命周期内仅运行一次。
-*/
-$bootstrap = new App\Common\Bootstrap(); 
-$app->setBootstrap($bootstrap)->run();
-```
-#### 1.2.3 注册自定义插件
-```php
-...
-/* 设置application主目录的常量; 该常量必须设置 
-*  Application run 自动识别web/console模式
-*  Profile.php 为应用配置文件
-*  ->setBootsrap(new \App\Common\Bootstrap()) 设置自定义引导类
-*  ->regPlugin(new \App\Common\Plugin()) 注册自定义插件
-*  ->run() Application运行
-*/
-define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
-$app = \Tiny\Tiny::createApplication(APPLICATION_PATH, APPLICATION_PATH . 'config/profile.php');
 
-/* 
-* 自动加载Application目录下的类，需先创建Application实例;
-* Plugin必须实现接口类Tiny\MVC\Plugin\IPlugin
-* Plugin实例可注册多个，在Application生命周期内通过hooks函数多次触发
-*/
-$plugin = new App\Common\Plugin(); 
-$app->regPlugin($plugin)->run();
-```
-
-#### 1.2.4 必须的常量
+#### 1.2.2 必须的常量
 <b>APPLICATION_PATH</b> 定义为application程序集的文件夹路径，必须设置;
 
-#### 1.2.5 参考标准库
+#### 1.2.3 参考标准库
 > [Tiny\Runtime:运行时标准库](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/lib/runtime.md)  
 > [Tiny\MVC:MVC库](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/lib/mvc.md)  
 
@@ -157,7 +100,7 @@ curl "http://localhost/index.php?c=main&a=index"
 * 命令行模式
 ```php
 #缺省设置控制器和动作
-php demo/public/index.php main/index
+php demo/public/index.php /main/index
 
 #长参输入
 php demo/public/index.php --c=main --a=index
@@ -184,10 +127,10 @@ service tiny-daemon stop
 php demo/public/index.php -d
 
 #开启
-php demo/public/index.php --id=tinyd -d
+php demo/public/index.php --id=tinyphp-daemon -d
 
 #关闭
-php demo/public/index.php --id=tinyd -d stop
+php demo/public/index.php --id=tinyphp-daemon -d stop
 
 ```
 ### 1.4 入口文件在Nginx .conf里的设置

@@ -1,6 +1,8 @@
 Tinyphp-framework
 ====
 
+> 本框架的编码规范基本遵守PSR规范标准，仅少数细节做灵活调整。
+
 * [运行环境](#运行环境)
     * [开发环境部署，docker](#docker)
     * [生产环境部署，CentOS7X.X86_64](#centos)
