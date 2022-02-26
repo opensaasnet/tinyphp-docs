@@ -34,9 +34,9 @@ class Bootstrap extend \Tiny\MVC\Bootstrap\Base
     // 初始化商业化的私有公共库
     public function initAutoloader()
     {
-        // 引入私有的公共库 Saasjit
-        $path = TINY_ROOT_PATH . 'lib/saasjit';
-        $namespace = 'Saasjit';
+        // 引入私有的公共库 opensaasnet
+        $path = TINY_ROOT_PATH . 'lib/opensaasnet';
+        $namespace = 'opensaasnet';
         $runtime = \Tiny\Runtime\Runtime::getInstance();
         $runtime->import($path, $namespace);  
     }

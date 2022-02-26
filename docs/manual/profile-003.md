@@ -49,7 +49,7 @@ $profile['charset'] = 'utf-8';            /*设置编码*/
 $profile['debug']['param_name'] = 'debug';             /*命令行下  通过--debug开启*/
 $profile['debug']['class'] = '\Tiny\MVC\Plugin\Debug'  /*debug输出通过Plugin注册的方式监听事件 可通过此节点自定义新的debug插件*/;
 ```
-> 具体参考 [Debug/调试模式](https://github.com/saasjit/tinyphp/blob/master/docs/manual/debug-004.md)
+> 具体参考 [Debug/调试模式](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/debug-004.md)
 
 3.4 异常处理
 ----
@@ -75,7 +75,7 @@ $profile['exception']['logid'] = 'tinyphp_exception';  /*日志ID*/
 $profile['bootstrap']['enabled'] = TRUE;
 $profile['bootstrap']['class'] = '\App\Common\Bootstrap';
 ```
-> 具体可参考 [Bootstrap/引导程序:demo/application/libs/common/Bootstrap.php](https://github.com/saasjit/tinyphp/blob/master/docs/manual/bootstrap-005.md)   
+> 具体可参考 [Bootstrap/引导程序:demo/application/libs/common/Bootstrap.php](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/bootstrap-005.md)   
 
 3.6 单文件打包
 ----
@@ -94,7 +94,7 @@ $profile['build']['path'] = 'build/builder'; /*打包配置文件夹*/
 $profile['build']['config_path'] = 'build/config';  /*打包器的设置文件夹，用来自定义application.config数据*/
 $profile['build']['profile_path'] = 'build/profile';  /*打包器的属性文件夹,用来自定义application.properties数据*/
 ```
-具体可参考 [Builder/打包单一可执行文件](https://github.com/saasjit/tinyphp/blob/master/docs/manual/builder-013.md)
+具体可参考 [Builder/打包单一可执行文件](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/builder-013.md)
 
 3.7 Daemon守护进程
 ----
@@ -102,7 +102,7 @@ $profile['build']['profile_path'] = 'build/profile';  /*打包器的属性文件
 > daemon.enabled = TRUE 时开启daemon.plugin设置的daemon插件。
 > daemon.plugin开启命令行参数 --daemon|-d 的监听。   
 > 指定参数为 --daemon=start|stop|restart 或 -d start|stop|restart
-> 更多其他命令行参数可参考[Daemon/守护进程](https://github.com/saasjit/tinyphp/blob/master/docs/manual/daemon-014.md)。
+> 更多其他命令行参数可参考[Daemon/守护进程](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/daemon-014.md)。
 > daemon.id 为缺省情况下的默认ID, 值为 daemon.policys节点对应子数组的KEY。   
 > daemon.plugin 为管理daemon进程的插件名，可自定义更改。
 > daemon.piddir 设置为运行时的pid文件存放目录，可自定义更改。
@@ -142,7 +142,7 @@ $profile['daemon']['policys'] = [
     ],
 ];
 ```
-> 更多可参考 [Daemon/守护进程](https://github.com/saasjit/tinyphp/blob/master/docs/manual/daemon-014.md)。
+> 更多可参考 [Daemon/守护进程](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/daemon-014.md)。
 
 3.8 Config配置
 ----
@@ -163,7 +163,7 @@ $profile['config']['path'] = 'config/'; /* 配置文件相对路径 */
 $profile['config']['paths'] = [];       /*可加载多个扩展的配置文件或文件夹路径，必须为绝对或者相对路径 数据可覆盖*/
 $profile['config']['cache']['enabled'] = TRUE; /*配置模块缓存设置 提高性能*/
 ```
-更多可参考 [Configuration/配置类](https://github.com/saasjit/tinyphp/blob/master/docs/manual/configuration-012.md)
+更多可参考 [Configuration/配置类](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/configuration-012.md)
 
 3.9 Lang配置
 ----
@@ -184,7 +184,7 @@ $profile['lang']['locale'] = 'zh_cn';
 $profile['lang']['path'] = 'lang/';   /*存放语言包的目录 */
 $profile['lang']['cache']['enabled'] = TRUE; /*配置模块缓存设置 提高性能*/
 ```
-> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/saasjit/tinyphp/blob/master/docs/manual/lang-006.md)
+> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/lang-006.md)
 
 3.10 Logger配置
 ----
@@ -200,7 +200,7 @@ $profile['log']['enabled'] = TRUE;
 $profile['log']['type'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
 $profile['log']['path'] = 'runtime/log/';
 ```
-> 更多可参考 [Logger/日志收集:demo/application/runtime/log](https://github.com/saasjit/tinyphp/blob/master/docs/manual/logger-010.md)   
+> 更多可参考 [Logger/日志收集:demo/application/runtime/log](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/logger-010.md)   
 
 3.11 Data数据源管理
 ----
@@ -232,7 +232,7 @@ $profile['data']['policys'] = [
     ['id' => 'memcached', 'driver' => 'memcached', 'host' => '127.0.0.1', 'port' => '11211']
 ];
 ```
-> 更多可参考 [Data/数据源](https://github.com/saasjit/tinyphp/blob/master/docs/manual/data-007.md)
+> 更多可参考 [Data/数据源](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/data-007.md)
 
 3.12 Cache
 ----
@@ -264,7 +264,7 @@ $profile['cache']['policys'] = [
     ['id' => 'file', 'driver' => 'file', 'lifetime' => 3600, 'path' => '']
 ];
 ```
-> 更多可参考 [Cache/缓存:demo/](https://github.com/saasjit/tinyphp/blob/master/docs/manual/cache-008.md)
+> 更多可参考 [Cache/缓存:demo/](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/cache-008.md)
 
 3.13 Session
 ----
@@ -289,7 +289,7 @@ $profile['session']['domain'] = '';
 $profile['session']['driver'] = 'redis';
 $profile['session']['dataid'] = 'redis_session';
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/saasjit/tinyphp/blob/master/docs/manual/controller-017.md)
+> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/controller-017.md)
 
 3.14 Filter过滤器设置
 ----
@@ -323,7 +323,7 @@ $profile['cookie']['expires'] = 3600;
 $profile['cookie']['prefix'] = '';
 $profile['cookie']['encode'] = FALSE;
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/saasjit/tinyphp/blob/master/docs/manual/controller-017.md)
+> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/controller-017.md)
 
 3.16 MVC流程控制
 ----
@@ -395,13 +395,13 @@ $profile['router']['rules'] = [
  */
 $profile['plugin']['enabled'] = FALSE;
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/saasjit/tinyphp/blob/master/docs/manual/controller-017.md)   
-> [Router/路由器](https://github.com/saasjit/tinyphp/blob/master/docs/manual/router-009.md)     
-> [Dispatcher/派发器](https://github.com/saasjit/tinyphp/blob/master/docs/manual/dispatcher-011.md)   
-> [Controller/控制器:demo/application/controllers/](https://github.com/saasjit/tinyphp/blob/master/docs/manual/controller-017.md)   
-> [Model/模型:demo/application/models](https://github.com/saasjit/tinyphp/blob/master/docs/manual/model-018.md)   
-> [Viewer/视图:demo/application/views](https://github.com/saasjit/tinyphp/blob/master/docs/manual/viewer-019.md)   
-> [Plugin/插件](https://github.com/saasjit/tinyphp/blob/master/docs/manual/plugin-016.md)   
+> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/controller-017.md)   
+> [Router/路由器](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/router-009.md)     
+> [Dispatcher/派发器](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/dispatcher-011.md)   
+> [Controller/控制器:demo/application/controllers/](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/controller-017.md)   
+> [Model/模型:demo/application/models](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/model-018.md)   
+> [Viewer/视图:demo/application/views](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/viewer-019.md)   
+> [Plugin/插件](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/plugin-016.md)   
 
 3.17 application的路径管理和配置
 ----
@@ -486,4 +486,4 @@ $profile['autoloader']['librarys'] = [
 ];
 $profile['autoloader']['no_realpath'] = FALSE;   /*是否替换加载库的路径为真实路径 phar兼容性*/
 ```
-> 更多可参考 [Tiny\Runtime：运行时](https://github.com/saasjit/tinyphp/blob/master/docs/manual/lib/runtime.md)
+> 更多可参考 [Tiny\Runtime：运行时](https://github.com/opensaasnet/tinyphp/blob/master/docs/manual/lib/runtime.md)
