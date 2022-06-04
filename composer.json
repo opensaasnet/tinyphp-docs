@@ -1,5 +1,5 @@
 {
-    "name": "opensaas/tinyphp-docs",
+    "name": "tinyphporg/tinyphp-docs",
     "description": "Docs of tinyphp-framework 2.0",
     "license" : "Apache-2.0",
     "type": "library",
@@ -10,7 +10,7 @@
     },
     "author": {
         "name": "Da.Jin",
-        "email": "da.jin@opensaas.net"
+        "email": "tinycn@qq.com"
     },
     "autoload": {
         "psr-4": {
