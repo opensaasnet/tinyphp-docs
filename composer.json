@@ -10,7 +10,7 @@
     },
     "author": {
         "name": "Da.Jin",
-        "email": "tinycn@qq.com"
+        "email": "da.jin@tinyphp.org"
     },
     "autoload": {
         "psr-4": {
