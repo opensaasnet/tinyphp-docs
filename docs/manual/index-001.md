@@ -14,35 +14,37 @@
 ----
 
 ```
-demo/   
-    application/
-    public/ 
-docs/
-    manual/
-    coding/
-    sql/
-    team/
-src/
-    Tiny/
-    
-tools/
+application/   // 应用程序集合
+public/       // 公共入口
+    index.php   // 入口文件
+    static/     // 公共静态资源
+        js/
+        css/
+        img/
+        font/
+runtime/       // 运行时文件夹
+    cache/     // 缓存
+    view/     // 视图
+    pid/     // 守护进程所需的pid存放目录
+    log/    // 日志文件
+vendor/     // composer存放目录
+    tinyphporg/
+        tinyphp-framework
+tools/   // 工具存放目录
 ```
-
 1.2 入口文件实例
 ----
 ```php
-/* 项目根目录 */
-define('TINY_ROOT_PATH', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR);
+// 项目根路径 该常量必须设置
+define('TINY_ROOT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
-/* 自动加载composer库 */
-define('TINY_COMPOSER_FILE', TINY_ROOT_PATH . '/vendor/autoload.php');
-include_once TINY_COMPOSER_FILE;
+// composer autoload
+define('TINY_COMPOSER_FILE', TINY_ROOT_PATH . 'vendor/autoload.php');
+require_once TINY_COMPOSER_FILE;
 
-
-/* 设置application主目录的常量; 该常量必须设置 
-*  Application run 自动识别web/console模式
-*  Profile.php 为应用配置文件
-*  ->run() Application运行
+/* 
+ * APPLICATION_PATH 该常量必须设置
+*  Application run 自动识别web/console/rpc模式
 */
 define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
 \Tiny\Tiny::createApplication(APPLICATION_PATH, APPLICATION_PATH . 'config/profile.php')->run();
@@ -54,7 +56,7 @@ define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
     include_once TINY_COMPOSER_FILE;
 }
 
-/* 设置是否开启运行时缓存，设置缓存内存大小参数 */ //运行时缓存仅在WEB/RPC模式下，Linux生产环境，安装了shmop内存扩展时生效
+/* 设置是否设置运行时环境参数 */
 \Tiny\Tiny::setENV([
 ]);
  
