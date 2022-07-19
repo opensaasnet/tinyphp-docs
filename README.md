@@ -1,6 +1,24 @@
 Tinyphp-framework
 ====
 
+tinyphp的适用场景与理念
+---- 
+* 客户端应用(IOS/Android/H5/小程序)的API接口开发：
+    * 高性能，大并发。
+    * 快速开发
+    
+*  Web管理后台：
+    * 适用于全栈或不具备设计工程师和前端工程师的研发团队。
+    * 集成了tinyphp-ui前端框架，只需少量的JS前端代码。 
+    
+* 大规模团队协作：
+    * 10-100+人以上的研发团队。
+    * 创业团队，产品快速成型，可在较少的研发人力成本下进行高效的敏捷开发。
+    * 适用于具备在大规模的高性能应用场景下，通过PHP解决大多数复杂业务的架构。
+    * 可将大规模复杂应用的后端语言有效控制为PHP一种后端开发语言，有效降低项目维护成本和团队管理难度。
+
+中文手册
+---- 
 > 本框架的编码规范基本遵守PSR规范标准，仅少数细节做灵活调整。
 * [入门](#入门)
    * 环境搭建 [lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
@@ -22,7 +40,11 @@ Tinyphp-framework
     + [数据库设计原则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/sql/design_003.md)
     + [数据库的配置优化](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/sql/optimization_004.md)
 * [团队编码规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/team)
-
+    + [核心点](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#%E6%A0%B8%E5%BF%83%E7%82%B9)
+    + [对于tinyphp的几个清醒认识](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#%E5%AF%B9%E4%BA%8E%E6%A1%86%E6%9E%B6%E7%9A%84%E5%87%A0%E4%B8%AA%E6%B8%85%E9%86%92%E8%AE%A4%E8%AF%86)
+    + [tinyphp的适用场景与理念](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#tinyphp%E7%9A%84%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E7%90%86%E5%BF%B5)
+    + [MVC的协作规范](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#mvc%E7%9A%84%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83)
+    + [tinyphp的系统设计原则](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#tinyphp%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99)
 * [框架使用参考手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
     * [Index/入口文件:    demo/public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index-001.md)
     * [Application/应用: demo/application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/application-002.md)    
