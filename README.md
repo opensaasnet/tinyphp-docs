@@ -45,7 +45,7 @@ tinyphp的适用场景与理念
     + [tinyphp的适用场景与理念](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/team/README.md#tinyphp%E7%9A%84%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E7%90%86%E5%BF%B5)
     + [MVC的协作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/team/README.md#mvc%E7%9A%84%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83)
     + [tinyphp的系统设计原则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/team/README.md#tinyphp%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99)
-* [框架使用参考手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
+* [框架配置手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
     * [Index/入口文件:    demo/public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index-001.md)
     * [Application/应用: demo/application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/application-002.md)    
     * [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile-003.md)
