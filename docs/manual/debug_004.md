@@ -26,13 +26,19 @@ $profile['debug']['console'] = false;   // web环境下 debug信息是否通过j
 Tiny::currentApplication()->setDebug(true|false);
 
 // 自动注解
-function (ApplicationBase $app) 
+/**
+* @autowired
+*/
+protected Properties $properties
+
+// 参数注入
+public function indexAction(ApplicationBase $app) 
 {
       $app->setdebug(true|false);
 }
 
 //控制器中
-function indexAction() 
+public function indexAction() 
 {
     $this->setDebug(true|false);
 }
