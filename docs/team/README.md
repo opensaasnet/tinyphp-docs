@@ -305,13 +305,13 @@ class User extends Controller
 */ 
 public function getUserInfoById(int $id) : array 
 {
-    return $this->_getUserInfoFromCache($id);
+    return $this->getUserInfoFromCache($id);
 }
 
 /**
 * 对调用公共接口的成员可隐藏具体实现的细节，并通过私有标识防止调用。
 */
-private function _getUserInfoFromCache(int $id) 
+private function getUserInfoFromCache(int $id) 
 {
    ...
 }
@@ -331,13 +331,13 @@ private function _getUserInfoFromCache(int $id)
 */ 
 public function getUserInfoById(int $id) : array 
 {
-    return $this->_getUserInfoFromCache($id);
+    return $this->getUserInfoFromCache($id);
 }
 
 /**
 * 对调用公共接口的成员可隐藏具体实现的细节，并通过私有标识防止调用。
 */
-private function _getUserInfoFromCache(int $id) 
+private function getUserInfoFromCache(int $id) 
 {
    ...
 }
