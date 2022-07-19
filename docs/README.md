@@ -7,9 +7,9 @@ TinyPHP For Framework
   * [SQL编码规范](https://github.com/tinyphporg/tinyphp/blob/master/docs/sql/README.md)
 
 * [框架使用手册](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/README.md) 
-  * [Index/入口文件:    demo/public/index.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/index-001.md)
-  * [Application/应用: demo/application/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/application-002.md)    
-  * [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile-003.md)  
+  * [Index/入口文件:    public/index.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/index-001.md)
+  * [Application/应用: application/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/application-002.md)    
+  * [Proptrites/应用配置:  application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile-003.md)  
   * [Debug/调试模式](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/debug-004.md)
   * [Bootstrap/引导程序:demo/application/libs/common/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap-005.md)
   * [Lang/语言包:demo/application/lang](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lang-006.md)
