@@ -1,4 +1,4 @@
-Debug
+Debug配置
 ====
 > Debug仅在当前Application实例的生命周期中存在。
 
