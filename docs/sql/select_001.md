@@ -103,5 +103,5 @@ SELECT id FROM t WHERE SUBSTRING(name, 1, 3) = ’abc’
 
 `【1-2.21】` JOIN时，小表联大表。
 
-   
+`【1-2.22】` 对于关键性查询语句，善用explain关键词进行索引和性能分析进行优化。 
    
