@@ -6,12 +6,13 @@
 ```php
 <?php
 /**
+ * #本文件内的一些简短介绍
+ *
  * @Copyright (C), 2011-, King.  
  * @Name Example.php   #文件名需与类名相同
  * @Author King #此处写上作者大名，是开发者的签名，也可以在第一时间追查出BUG出自何人之手。
  * @Version Beta 1.1  #当前的版本号
- * @Date: 2012-2-2    #创建的日期
- * @Description          #本文件内的一些简短介绍
+ * @Date: 2012-2-2    #创建的日期     
  * @Class List
  * 1. Example  示范例子   #将本文件夹内的类做简短的功能介绍和定位
  * @Function List
@@ -21,8 +22,7 @@
  * King 2012-2-2 Beta 1.0 第一次建立该文件
   * King  2013-2-2 Beta1.1 修改文件，增加函数out       
  */
-namespace Tiny;        #命名空间需要放置在所有代码前面，declare除外。
-
+namespace Tiny;  // 命名空间需要放置在所有代码前面，declare除外。
 
 /**
 *   #类的简短介绍
@@ -39,7 +39,7 @@ class Example
      *
      * @var string 默认的字符串
      */
-     private static $_key = 'TINY';
+     private static $key = 'TINY';
     
     /**
      * 解密函数
@@ -49,7 +49,7 @@ class Example
      */
     public static function out($string = NULL)
     {
-        return (is_null($string) ? self::$_key : $string);
+        return (is_null($string) ? self::$key : $string);
     }
     
 ?>  
@@ -59,8 +59,7 @@ class Example
 示例8-2 循环的一些示例
 ----
 ```php
-for ($i = 0; $i < 100; $i++)
-{
+for ($i = 0; $i < 100; $i++) {
      ……;
 }
 ```
