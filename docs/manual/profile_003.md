@@ -1,55 +1,62 @@
 应用配置文件
 ====
 
+在创建新的Application的实例时，通过引入配置文件profile.php，可配置管理整个应用组件和MVC流程。 
+
 3.1 profile.php路径设置
 ----
-> 通过demo/public/index.php入口文件的Tiny\Tiny::createApplication($path,$profile), 调用ApplicationBase __construct($path, $profile = NULL);   
-> $path 即APPLICATION_PATH;   
-> $profile缺省配置为$path/profile.php;  
-> 创建新的Application的实例时，通过引入profile.php管理整个应用组件和MVC流程。   
- 
+profile路径通过public/index.php入口文件中的Tiny\Tiny::createApplication($path, $profile)设置
+$path 即APPLICATION_PATH;   
+$profile缺省配置为$path/profile.php;  
+  
+  
 3.2 profile.php的实例化
 ----
-### 在Application实例中
-```php
-#profile.php的Tiny\Config\Configuration实例
-$app->properties;
+参考类: Tiny\MVC\Application\Properties，继承自Tiny\Config\Configuration
 
+```php
+// 在applicationBase::__construct()内实例化。
+$app->properties;  // 引用properties实例
 ```
 
 ### Controller的引用
 ```php
 
-#Tiny\Controller\Main
+// App\Controller\Main
+$this->application->properties;
 
-$this->_app->properties;
-
-#or
-
+// or
 $this->properties;
+
+// 自动注解
+public function indexAction(Properties $properties)
+{
+    $properties;
+}
 ```
 
 ### 其他
-```php
-#Model层原则上不允许引用
 
-#View默认没有引用
-```
++ 在Model层原则上不允许引用
 
-3.3 Debug模式
++ View层中 通过$app->properties引用
+
+3.3 开启Debug模式
 ----
 
 
 ```php
-$profile['debug']['enabled'] = TRUE;      /*是否开启调试模式: bool FALSE 不开启 | bool TRUE 开启*/
-$profile['timezone'] = 'PRC';             /*设置时区*/
-$profile['charset'] = 'utf-8';            /*设置编码*/
+$profile['debug']['enabled'] = true;      // 是否开启调试模式: bool FALSE 不开启 | bool TRUE 开启
+$profile['timezone'] = 'PRC';             // 设置时区
+$profile['charset'] = 'utf-8';            // 设置编码
 
 #debug
-$profile['debug']['param_name'] = 'debug';             /*命令行下  通过--debug开启*/
-$profile['debug']['class'] = '\Tiny\MVC\Plugin\Debug'  /*debug输出通过Plugin注册的方式监听事件 可通过此节点自定义新的debug插件*/;
+$profile['debug']['event_listener'] = \Tiny\MVC\Event\DebugEventListener::class; // 通过注册监听事件 可通过此节点自定义新的debug插件
+$profile['debug']['param_name'] = 'debug';     // 命令行下  通过--debug开启
+$profile['debug']['cache']['enabled'] = true; // 是否在debug模式下启用应用缓存
+$profile['debug']['console'] = false;   // web环境下 debug信息是否通过javascript的console.log输出在console
 ```
-> 具体参考 [Debug/调试模式](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/debug-004.md)
+> 具体参考 [Debug/调试模式](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/debug_004.md)
 
 3.4 异常处理
 ----
