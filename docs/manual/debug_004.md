@@ -54,3 +54,5 @@ $debugContent = ...;
 $this->app->response->appendBody($debugContent);
 
 ```
+
+> 具体参考库 Tiny\MVC\Event\DebugEventListener
