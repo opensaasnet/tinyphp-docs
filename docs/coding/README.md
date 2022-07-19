@@ -12,7 +12,7 @@ PHP编码规范
 
 > [第五章 常量](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/coding/constant-005.md)  
 
-> [第六章 函数设计](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/coding/function-006.md)  
+> [第六章 函数设计](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/coding/function_006.md)  
 
 > [第七章 IDE的选择](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/coding/ide-007.md)  
 
