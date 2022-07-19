@@ -2,19 +2,16 @@ Tinyphp-framework
 ====
 
 > 本框架的编码规范基本遵守PSR规范标准，仅少数细节做灵活调整。
-
-* [运行环境](#运行环境)
-    * [开发环境部署，docker](#docker)
-    * [生产环境部署，CentOS7X.X86_64](#centos)
- 
-* [Demo:http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)    
-    * [tinyphp](#tinyphp) 
-* [中文文档:https://github.com/tinyphporg/tinyphp-docs.git](https://github.com/tinyphporg/tinyphp-docs)   
+* [入门](#入门)
+   * 环境搭建 [lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
+   * Demo [tinyphp: http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)
+    
+* [基础编码规范](#基础编码规范)   
   * [语言基础规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/coding)
   * [SQL设计规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/sql)
   * [团队编码规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/team)
 
-* [框架使用手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
+* [框架使用参考手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
     * [Index/入口文件:    demo/public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index-001.md)
     * [Application/应用: demo/application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/application-002.md)    
     * [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile-003.md)
@@ -51,6 +48,6 @@ Tinyphp-framework
     * [Tiny\Net：网络](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/net.md)
     * [Tiny\String：字符处理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/string.md) 
    
-                     
+* [UI库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/ui/)                     
 
 
