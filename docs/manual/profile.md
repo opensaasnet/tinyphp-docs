@@ -41,9 +41,8 @@ public function indexAction(Properties $properties)
 
 + View层中 通过$app->properties引用
 
-3.3 开启Debug模式
+3.3 Debug 调试模式
 ----
-
 
 ```php
 $profile['debug']['enabled'] = true;      // 是否开启调试模式: bool FALSE 不开启 | bool TRUE 开启
@@ -56,52 +55,101 @@ $profile['debug']['param_name'] = 'debug';     // 命令行下  通过--debug开
 $profile['debug']['cache']['enabled'] = true; // 是否在debug模式下启用应用缓存
 $profile['debug']['console'] = false;   // web环境下 debug信息是否通过javascript的console.log输出在console
 ```
-> 具体参考 [Debug/调试模式](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/debug_004.md)
+> 具体参考 [Debug/调试模式](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/debug.md)
 
-3.4 异常处理
+3.4 ExceptionHandler 异常处理句柄
 ----
-> 通过 exception.eanbled开启框架的异常处理。   
-> Debug开启的开发模式下，会输出异常详细信息。   
-> Debug关闭的生产环境下，一般使用静默输出，可开启日志记录异常信息的方式。   
+> exception.eanbled = true开启框架的异常处理。   
+> Debug模式开启的开发模式下，会输出异常的详细信息。   
+> Debug模式关闭的生产环境下，会静默输出异常信息，通过开启日志记录异常信息。   
 ```php
-$profile['exception']['enabled'] = TRUE;  /*异常处理:bool TRUE 注册Application实例为Tiny\Runtime的异常处理句柄| bool FALSE 默认不处理 */
-$profile['exception']['log'] = TRUE;     /*是否以日志方式输出异常信息*/
-$profile['exception']['logid'] = 'tinyphp_exception';  /*日志ID*/
+/**
+ * application的异常处理
+ * 
+ * exception.enabled 开启application的异常处理
+ *      true 设置application实例为异常处理句柄，监听异常事件并处理
+ *      false 通过runtime默认异常处理
+ * 
+ * exception.log 异常日志
+ *      true 开启 异常输出到日志中
+ *      false 关闭输出
+ * 
+ * exception.logid 默认的异常日志id 
+ *      如果是文件存储，则保留在runtime/log文件夹下，以logid命名的日志文件中
+ */
+$profile['exception']['enabled'] = true;
+$profile['exception']['log'] = true;
+$profile['exception']['logid'] = 'tinyphp_exception';
 ```
+> 具体参考 [Runtime.ExceptionHandler/异常句柄](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/exception.md)   
 
 3.5 Boostrap 引导
-----
-> 这是除了在入口文件通过$app->setBootrap方式设置引导实例的缺省配置方式。   
-> bootstrap.class 可更改为自定义的其他引导类。   
-> bootstrap.enabled 可选择关闭引导。  
-
+---- 
+> bootstrap.enabled = true|false 可选择关闭或开启引导类。   
+> bootstrap.event_listener  = class 可更改为其他实现了Bootstrap监听事件的引导类  
+  
 ```php
 /**
- * 自动加载引导类
+ * Application引导类
+ * 
+ * 通过监听引导事件触发
+ * 
+ * bootstrap.enabled 
+ *      开启引导
+ * 
+ * bootstrap.event_listener
+ *      string 实现Bootstrapevent_listener的类名
+ *      array [实现Bootstrapevent_listener的类名]
+ *      
  */
-$profile['bootstrap']['enabled'] = TRUE;
-$profile['bootstrap']['class'] = '\App\Common\Bootstrap';
+$profile['bootstrap']['enabled'] = true;
+$profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
-> 具体可参考 [Bootstrap/引导程序:demo/application/libs/common/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap-005.md)   
+> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
 
-3.6 单文件打包
+3.6 Builder 单文件打包
 ----
-> 这是基于Phar扩展，以插件的方式运行的打包器。   
-> build.enabled开启 通过监听命令行输入的--build参数开始打包，可通过build.param_name自定义其他参数名。   
-> build.plugin 可更换为其他自定义打包插件。   
-> 配置数据和自定义profile.php默认位于APPLICATION_PATH的相对目录下，可更改build.config_path build.profile_path来更换目录。   
+> Builder是基于Phar扩展，并以监听事件方式运行的打包器。   
+> build.enabled = true|false 开启或关闭
+> build.param_name = build 通过监听命令行输入的--build参数开始打包，可通过build.param_name自定义其他参数名。   
+> build.path 打包器的配置文件夹。 
+> build.event_listener = class 可自定义实现打包的监听事件接口  
+> build.config_path 
+> builder.profile_path 配置数据和自定义profile.php默认位于APPLICATION_PATH的相对目录下，可更改build.config_path build.profile_path来更换目录。   
+> 
 ```php
 /**
- * 打包器设置
+ * 打包器
+ * 
+ * 仅在命令行环境的ConsoleApplication实例生效
+ * 
+ * builder.enabled 是否开启单文件打包器
+ *      true 开启  false 关闭监听
+ *      
+ * builder.param_name 参数名
+ *      php public/index --build 即可开启单文件打包
+ *      
+ * builder.event_listener 打包器监听事件类
+ *      监听到输入参数  --build，即开始初始化打包器
+ *      
+ * builder.path   打包器的配置文件夹 
+ *      根据配置文件打包
+ * 
+ * builder.config_path 
+ *      附加到单文件执行时的application的配置数据
+ * 
+ * builder.profile_path 
+ *      附加到单文件执行时的application的propertis数据
+ *            
  */
-$profile['build']['enabled'] = TRUE;  /*不开启时 忽略build打包行为*/
-$profile['build']['param_name'] = 'build'; /*--build参数 开启打包工作*/
-$profile['build']['plugin'] = '\Tiny\MVC\Plugin\Builder';
-$profile['build']['path'] = 'build/builder'; /*打包配置文件夹*/
-$profile['build']['config_path'] = 'build/config';  /*打包器的设置文件夹，用来自定义application.config数据*/
-$profile['build']['profile_path'] = 'build/profile';  /*打包器的属性文件夹,用来自定义application.properties数据*/
+$profile['builder']['enabled'] = true;
+$profile['builder']['param_name'] = 'build';
+$profile['builder']['event_listener'] = \Tiny\MVC\Event\BuilderEventListener::class;
+$profile['builder']['path'] = 'build/builder';
+$profile['builder']['config_path'] = 'build/config';
+$profile['builder']['profile_path'] = 'build/profile';
 ```
-具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder-013.md)
+具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
 
 3.7 Daemon守护进程
 ----
