@@ -45,8 +45,9 @@ Debug的实现方式： 通过实现EventListener接口实现
 
 ```php
 // 在application.__construct中注册事件
+$app = Tiny::currentApplication();
 $debugEvenentListener = Tiny\MVC\Event\DebugEventListener::class;
-EventManager::addListener($debugEvenentListener);
+$app->eventManager->addListener($debugEvenentListener);
 
 // 触发 MvcEvent的onEndRequest()事件
 $debugContent = ...;
