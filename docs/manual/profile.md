@@ -144,7 +144,7 @@ $profile['builder']['path'] = 'build/builder';
 $profile['builder']['config_path'] = 'build/config';
 $profile['builder']['profile_path'] = 'build/profile';
 ```
-具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
+具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/builder.md)
 
 3.7 Daemon守护进程
 ----
