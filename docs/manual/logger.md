@@ -58,53 +58,43 @@ $lang->getData();
 #### 注意： Lang的配置数据无法动态修改
 
 
-Lang 在Application内的实例化
+Logger 在Application内的实例化
 ----
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
 ```php
-namespace Tiny\MVC\Application;
-   
- class ApplicationProvider implements DefinitionProviderInterface
- {
     /**
-     * 获取语言包容器定义
+     * 获取日志生成器的容器定义
      *
-     * @return boolean|\Tiny\DI\Definition\CallableDefinition
+     * @return void|\Tiny\DI\Definition\CallableDefinition
      */
-    protected function getLangDefinition()
+    protected function getLoggerDefinition()
     {
-        $config = (array)$this->properties['lang'];
+        // 配置是否开启日志收集器
+        $config = (array)$this->properties['log'];
         if (!$config['enabled']) {
-            return false;
+            return;
         }
-        return new CallableDefinition(Lang::class, function (ContainerInterface $container, array $config) {   
-            $locale = (string)$config['locale'];
-            $configPath = (string)$config['path'];
-            
-            // create
-            $langInstance = new Lang();
-            $langInstance->setLocale($locale);
-            $langInstance->setPath($configPath);
-            
-            if (!$config['cache']['enabled']) {
-                return $langInstance;
+        
+        return new CallableDefinition(Logger::class, function (array $config) {
+
+            // 加载日志驱动
+            foreach ((array)$config['drivers'] as $type => $className) {
+                Logger::regLogWriter($type, $className);
             }
             
-            // config cache
-            if ($container->has('app.application.cache')) {
-                $cacheInstance = $container->get('app.application.cache');
-                $cacheKey = (string)$config['cache']['key'] ?: 'application.cache.lang';
-                $langData = $cacheInstance->get($cacheKey);
-                if ($langData && is_array($langData)) {
-                    $langInstance->setData($langData);
-                } else {
-                    $langData = $langInstance->getData();
-                    $cacheInstance->set($cacheKey, $langData);
-                }
-            }
-            return $langInstance;
+            // 创建实例
+            $logger = new Logger();
+            
+            // 文件型日志写入器的配置
+            $writerConfig = ('file' === $config['writer']) ? [
+                'path' => $config['path'],
+            ] : [];
+            
+            // 添加日志写入器
+            $logger->addLogWriter($config['writer'], $writerConfig);
+            return $logger;
         }, ['config' => $config]);
     }
 ```
@@ -113,24 +103,19 @@ profile.php 配置
 ----
 ```php
 /**
- * Application的语言包设置
+ * application的日志配置
  * 
- * lang.enabled 开启语言包实例化
- *   
- * lang.locale 默认语言包
- *      zh_cn 中文语言包
- *  
- *  lang.path 存放语言包配置文件的路径
- *      路径配置同config
- *      
- * lang.cache.enabled 开启缓存
- *      开启将所有语言包数据缓存
+ * log.enabled 开启日志处理
+ * 
+ * log.wirter 日志写入器
+ *      file 写入到本地文件
+ *      syslog 通过系统syslog函数写入到系统文件夹
+ *      rsyslog 通过rsyslog协议，写入到远程文件夹
  */
-$profile['lang']['enabled'] = true;          // 是否开启
-$profile['lang']['locale'] = 'zh_cn';        // 默认语言包
-$profile['lang']['path'] = 'lang/';          // 存放语言包的目录
-$profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高性能
+$profile['log']['enabled'] = true;
+$profile['log']['writer'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
+$profile['log']['path'] = '{runtime}/log/';
 ```
 
 ### 具体参考可见   
-[Lang/语言类:Tiny\Lang\Lang](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/lang.md)
+[Logger/日志采集器:Tiny\Log\Logger](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/log.md)
