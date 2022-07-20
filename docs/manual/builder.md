@@ -4,6 +4,16 @@ Builder 打包器
 打包器基于Phar扩展实现， 需要安装phar扩展;
 并在php.ini中将phar.readonly = On 更改为phar.readonly  = Off。
 
+### 示例
+```
+// 使用默认配置 build/builder/tinyphp.php
+php public/index.php --build
+
+// 生成tinyphp.phar
+php tinyphp.phar
+
+```
+
 Application内的打包器初始化
 ----
 通过Application中属性实例Properties的执行构造函数时，获取打包器配置，并注册到事件监听器中。 
