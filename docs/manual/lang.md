@@ -132,4 +132,4 @@ $profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高�
 ```
 
 ### 具体参考可见   
-[Configaurtion/配置类:Tiny\Config\Configuration](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/configuration.md)
+[Lang/语言类:Tiny\Lang\Lang](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/lang.md)
