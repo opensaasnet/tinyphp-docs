@@ -149,50 +149,62 @@ $profile['builder']['profile_path'] = 'build/profile';
 3.7 Daemon守护进程
 ----
 
-> daemon.enabled = TRUE 时开启daemon.plugin设置的daemon插件。
-> daemon.plugin开启命令行参数 --daemon|-d 的监听。   
-> 指定参数为 --daemon=start|stop|restart 或 -d start|stop|restart
-> 更多其他命令行参数可参考[Daemon/守护进程](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/daemon-014.md)。
-> daemon.id 为缺省情况下的默认ID, 值为 daemon.policys节点对应子数组的KEY。   
-> daemon.plugin 为管理daemon进程的插件名，可自定义更改。
-> daemon.piddir 设置为运行时的pid文件存放目录，可自定义更改。
-> daemon.logdir 日志目录，可自定义更改。   
-> daemon.tick 检测子进程退出后重建子进程前等待的时间，防止异常大量创建进程引发崩溃。   
-> daemon.polics 的配置数组参数:   
->> id为守护进程标识。   
->> type为worker进程调用的Worker类型。   
->> args数组的controller和action为Worker控制器名称和动作名称。   
->> num为进程数量。   
->> options为type=worker时的参数配置，runmax=1024为每个进程最大运行控制器的动作1024次后退出，tick为该子进程退出后重建前的等待时间。     
->>
+daemon 守护进程，是基于PHP多进程扩展研发的父子进程管理
 ```php
 /**
  * 守护进程的基本设置
+ * 
+ * 仅在命令行环境的ConsoleApplication实例生效
+ * 
+ * daemon.enabled 
+ *      是否开启自动监听Daemon的命令行参数监听
+ * 
+ * daemon.id 默认启动的服务ID
+ *      id 即 daemon.policys数组里的key
+ *      
+ * daemon.event_listener Daemon事件监听器
+ *      监听D命令行的-d --daemon参数 并实例化Daemon
+ *    
+ *  daemon.piddir 
+ *      守护进程的PID保存目录
+ *      
+ *  daemon.tick 
+ *      默认子进程退出后重建的间隔    
+ *      
+ *  daemon.daemons 配置服务数组
+ *      daemonid => [
+ *          workers,子进程配置
+ *          options => 附加给当前服务实例的选项
+ *      ]
+ *      workers的配置: 【
+ *          id => worker的身份标识
+ *          type => worker worker类型，默认为限定循环执行的子进程模式
+ *          dispatcher => [controller,action,module]代理执行worker进程的控制器,动作参数, 模块
+ *          num => 子进程的数量
+ *          options => [] 附加给worker实例的参数
+ *              type = worker: 
+ *                  options => [
+ *                  runmax => 最大运行次数，避免内存占用过多系统阻塞
+ *                  tick  => 重建子进程的间隔 
+ *              ]
+ *      】
  */
-$profile['daemon']['enabled'] = TRUE;
-$profile['daemon']['id'] = 'tinyphp-daemon';          /*默认的daemonid*/
-$profile['daemon']['plugin'] = '\Tiny\MVC\Plugin\Daemon';
-$profile['daemon']['piddir'] = 'runtime/pid/'; /*守护进程pid目录*/
-$profile['daemon']['logdir'] = 'runtime/log/'; /*守护进程的日志目录*/
-$profile['daemon']['tick'] = 2;                /*检测子进程退出后的tick数 避免异常时大量创建操作系统进程引发崩溃*/
-
-/**
- * 加载指定守护进程的配置参数  type
- *                     worker 运行指定次数退出的worker
- *                     timerworker 定时触发的worker 未实现
- *                     networker 监听各种端口的worker 未实现
-*/
-$profile['daemon']['policys'] = [
+$profile['daemon']['enabled'] = true;
+$profile['daemon']['id'] = 'tinyphp-daemon';
+$profile['daemon']['event_listener'] = \Tiny\MVC\Event\DaemonEventListener::class;
+$profile['daemon']['piddir'] = '{runtime}/pid/';
+$profile['daemon']['tick'] = 2;
+$profile['daemon']['daemons'] = [
     'tinyphp-daemon' => [
-        'workers' => [      //worker子进程配置
-            ['id' => 'index', 'type' => 'worker' , 'args' => ['controller' => 'main', 'action' => 'index'], 'num' => 1, 'options' => ['runmax' => 1024, 'tick' => '0.1']],
-            ['id' => 'test', 'type' => 'worker' , 'args' => ['controller' => 'main', 'action' => 'test'], 'num' => 10, 'options' => ['runmax' => 1024, 'tick' => '1']]
+        'workers' => [
+           ['id' => 'index', 'type' => 'worker' , 'dispatcher' => ['controller' => 'main', 'action' => 'index', "module" => ''], 'num' => 1, 'options' => ['runmax' => 1024, 'tick' => '10']],
+           ['id' => 'test', 'worker' => 'worker' , 'dispatcher' => ['controller' => 'main', 'action' => 'test', 'module' => ''], 'num' => 1, 'options' => ['runmax' => 1024, 'tick' => '1']]
         ],
         'options' => [],
     ],
 ];
 ```
-> 更多可参考 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/daemon-014.md)。
+> 更多可参考 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/daemon.md)。
 
 3.8 Config配置
 ----
