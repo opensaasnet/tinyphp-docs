@@ -85,8 +85,8 @@ $profile['exception']['logid'] = 'tinyphp_exception';
 
 3.5 Boostrap 引导
 ---- 
-> bootstrap.enabled = true|false 可选择关闭或开启引导类。   
-> bootstrap.event_listener  = class 可更改为其他实现了Bootstrap监听事件的引导类  
+> bootstrap.enabled = true|false 选择关闭或开启引导类。   
+> bootstrap.event_listener  = class 可更改为自定义的实现了MvcEvent::EVENT_BOOTSTRAP监听事件的引导类  
   
 ```php
 /**
