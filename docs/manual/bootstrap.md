@@ -66,12 +66,10 @@ $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
 
 
-引导类的实现
+引导类的实现  
 ----
-
-* 
 * 自定义Bootstrap类，需要继承基类Tiny\MVC\Bootstrap\Bootstrap; 该基类实现了事件监听接口Tiny\MVC\Event\BootstrapEventListenerInterface;   
-* 触发MvcEvent::EVENT_BOOTSTRAP事件时，Tiny\MVC\Bootstrap\Bootstrap会调用成员函数onbootstrap进行事件处理, 其流程为：   
+* 通过$app->bootstrap()触发MvcEvent::EVENT_BOOTSTRAP事件时，Tiny\MVC\Bootstrap\Bootstrap会调用成员函数onbootstrap进行事件处理, 其流程为：   
     * 寻找所有前缀带有init的成员函数，通过容器自动注入并执行。    
     * 支持@autowired 自动加载类，自动注解注入成员属性，执行其成员函数。   
 
@@ -87,6 +85,10 @@ use Tiny\MVC\Bootstrap\Bootstrap as Base
 */
 class Bootstrap extend Base
 {
+    /**
+    *  @autowired 自动注入当前应用实例
+    */
+    private ApplicationBase $app;
     
     // 触发onBootstrap引导事件时，自动执行init前缀的成员函数
     public function initAutoloader()
@@ -105,16 +107,24 @@ class Bootstrap extend Base
         $this->application->properties->set('data',$data);
     }
     
-    // 注册插件
-    
+    // 注册事件
+    /**
+    * @autowired 自动注入并执行该成员函数
+    */
+    public function event(EventManager $eventManager)
+    {
+        $listener = '...';
+        $eventManager->addEventListener($listener);
+    }
     
     //注册视图引擎
+    ...
     
     //注册路由
-    
     ...
 }
 ```
 
-#### namespace Tiny.MVC.Bootstrap
+类参考 Tiny\MVC\Bootstrap\Bootstrap 
+----
 
