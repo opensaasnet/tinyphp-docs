@@ -105,7 +105,7 @@ $profile['exception']['logid'] = 'tinyphp_exception';
 $profile['bootstrap']['enabled'] = true;
 $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
-> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
+> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/bootstrap.md)   
 
 3.6 Builder 单文件打包
 ----
