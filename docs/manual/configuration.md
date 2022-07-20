@@ -3,7 +3,7 @@ Configuration 配置
    当前Application实例的Configuration实例   
    通过profile.php的config.path配置路径，默认为application/config;   
 
-### Configuration的使用示例
+### Configuration的实例获取
 ```php
 
 // 支持参数注入和自动注解
@@ -37,7 +37,27 @@ public function getConfigByAlias(ContainerInterface $container)
 }
 ```
 
-Application内的实例化
+Configuration 的使用
+----
+
+
+```php
+// 通过.分隔子节点
+$config->get('default.a.b');
+
+// 可用数组形式调用配置
+$config['default.a.b'];
+
+// 获取配置所有数据
+$config->get();
+
+// 动态更改配置节点
+$config['default.a.b'] = 'tinyphp';
+$config->set('default.a.b', 'tinyphp');
+```
+#### 注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。
+
+Configuration在Application内的实例化
 ----
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
