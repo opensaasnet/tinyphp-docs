@@ -19,7 +19,10 @@ Application内的打包器初始化
 通过Application中属性实例Properties的执行构造函数时，获取打包器配置，并注册到事件监听器中。 
 
 ```php
-    
+namespace Tiny\MVC\Application;
+   
+ class Properties extend Configuration
+ {
     public function __construct()
     {
         ...
