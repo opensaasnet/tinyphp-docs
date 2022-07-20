@@ -213,44 +213,28 @@ $profile['daemon']['daemons'] = [
 ----
 > config.enabled = true|false 选择是否开启应用的配置实例。
 
-### Configuration的实例获取
 ```php
-
-// 支持参数注入和自动注解
-// controller/model
-
 /**
-* @autowired 自动注入
-*/
-protected Configuartion $config;
-
-/**
-* 参数注入
-*/
-public function __construct(Configuration $config)
-{
-  ...
-}
-
-/**
-* @autowired 自动注入
-*/
-public function config(Configurartion $config) 
-{
-  ...
-}
-
-// 也可通过别名调用
-public function getConfigByAlias(ContainerInterface $container)
-{
-   return $container->get('app.config');
-}
+ * 当前Application实例下的Configuration实例设置
+ * 
+ * config.enabled 是否开启配置
+ *      true 开启 | false 关闭
+ *  
+ * config.path 配置文件的相对路径
+ *      array [file|dir] 可配置多个路径
+ *      string file      单个配置文件路径
+ *      string dir       文件夹路径
+ * 
+ * config.cache.enabled 是否缓存配置
+ *      开启缓存，将读取所有配置文件并解析后，缓存至本地PHP文件
+ *      配置文件内严禁函数，类等命名和操作，否则缓存数据无法解析      
+ * 
+ */
+$profile['config']['enabled'] = true;
+$profile['config']['path'] = 'config/';
+$profile['config']['cache']['enabled'] = true;
 ```
-
-Configuration 的使用
-----
-
-
+### 示例
 ```php
 // 通过.分隔子节点
 $config->get('default.a.b');
