@@ -255,24 +255,29 @@ $config->set('default.a.b', 'tinyphp');
 
 3.9 Lang配置
 ----
-> lang.enabled = TRUE|FALSE application->getLang()是否输出Lang的实例。   
->> controller中调用 $this->lang;   
->> model中调用 $this->lang;   
->> viewer中调用 $lang。    
-
-> lang.locale = zh_cn 默认语言包名称，默认会影响views/下的模板文件夹。   
-> lang.path 语言包配置路径。      
->  lang.cache.enabled 是否开启语言包缓存, 缓存通过runtimeCache实现。    
+> lang.enabled = true|false 选择是否开启应用的配置实例。
+   
 ```php
 /**
- * 语言模块设置
+ * Application的语言包设置
+ * 
+ * lang.enabled 开启语言包实例化
+ *   
+ * lang.locale 默认语言包
+ *      zh_cn 中文语言包
+ *  
+ *  lang.path 存放语言包配置文件的路径
+ *      路径配置同config
+ *      
+ * lang.cache.enabled 开启缓存
+ *      开启将所有语言包数据缓存
  */
-$profile['lang']['enabled'] = TRUE;   /*是否开启 */
-$profile['lang']['locale'] = 'zh_cn';
-$profile['lang']['path'] = 'lang/';   /*存放语言包的目录 */
-$profile['lang']['cache']['enabled'] = TRUE; /*配置模块缓存设置 提高性能*/
+$profile['lang']['enabled'] = true;          // 是否开启
+$profile['lang']['locale'] = 'zh_cn';        // 默认语言包
+$profile['lang']['path'] = 'lang/';          // 存放语言包的目录
+$profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高性能
 ```
-> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/tinyphporg/tinyphp-/blob/master/docs/manual/lang-006.md)
+> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lang.md)
 
 3.10 Logger配置
 ----
