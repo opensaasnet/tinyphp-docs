@@ -283,7 +283,7 @@ $profile['lang']['locale'] = 'zh_cn';
 $profile['lang']['path'] = 'lang/';   /*存放语言包的目录 */
 $profile['lang']['cache']['enabled'] = TRUE; /*配置模块缓存设置 提高性能*/
 ```
-> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lang-006.md)
+> 更多可参考 [Lang/语言包:demo/application/lang](https://github.com/tinyphporg/tinyphp-/blob/master/docs/manual/lang-006.md)
 
 3.10 Logger配置
 ----
