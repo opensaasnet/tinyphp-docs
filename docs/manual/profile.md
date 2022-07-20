@@ -251,7 +251,7 @@ $config->set('default.a.b', 'tinyphp');
 ```
 #### 注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。
 
-具体可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
+具体可参考 [Configuration配置/应用配置类:application/config](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
 
 3.9 Lang配置
 ----
@@ -277,23 +277,28 @@ $profile['lang']['locale'] = 'zh_cn';        // 默认语言包
 $profile['lang']['path'] = 'lang/';          // 存放语言包的目录
 $profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高性能
 ```
-> 更多可参考 [Lang/语言包配置:application/lang](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lang.md)
+> 具体可参考 [Lang/语言包配置:application/lang](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lang.md)
 
 3.10 Logger配置
 ----
-> log.enabled = TRUE|FALSE application->getLogger()是否输出Logger的实例。   
-> log.type = file|syslog file为文件系统记录  syslog是通过php的syslog扩展记录日志。   
-> log.path log.type=file时 设置的log日志文件存放路径。   
+> log.enabled = true|false 可选择开启或关闭日志  
 
 ```php
 /**
- * 日志模块设置
+ * application的日志配置
+ * 
+ * log.enabled 开启日志处理
+ * 
+ * log.wirter 日志写入器
+ *      file 写入到本地文件
+ *      syslog 通过系统syslog函数写入到系统文件夹
+ *      rsyslog 通过rsyslog协议，写入到远程文件夹
  */
-$profile['log']['enabled'] = TRUE;
-$profile['log']['type'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
-$profile['log']['path'] = 'runtime/log/';
+$profile['log']['enabled'] = true;
+$profile['log']['writer'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
+$profile['log']['path'] = '{runtime}/log/';
 ```
-> 更多可参考 [Logger/日志收集:demo/application/runtime/log](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/logger-010.md)   
+> 具体可参考 [Logger/配置日志收集器:runtime/log](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/logger.md)   
 
 3.11 Data数据源管理
 ----
