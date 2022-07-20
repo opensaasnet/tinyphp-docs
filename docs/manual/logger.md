@@ -1,10 +1,10 @@
 日志收集器
 ====
 
-Lang 语言包
+Tiny\Log\Logger 日志采集器
 ====
-   当前Application实例的Lang实例   
-   通过profile.php的lang.path配置路径，默认为application/lang;   
+   当前Application实例的Logger实例   
+   通过profile.php的logger.path配置日志存储路径 默认路径为runtime/log;   
 
 ### Logger的实例获取
 ```php
