@@ -262,7 +262,7 @@ $profile['config']['enabled'] = true;
 $profile['config']['path'] = 'config/';
 $profile['config']['cache']['enabled'] = true;
 ```
-更多可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/configuration.md)
+更多可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
 
 3.9 Lang配置
 ----
