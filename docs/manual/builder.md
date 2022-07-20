@@ -160,5 +160,6 @@ return [
 ];
 ```
 
-具体参考可见 [Build/打包:Tiny\Build](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/build.md)    
+具体参考可见   
+[Build/打包:Tiny\Build](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/build.md)    
 [Event/事件:Tiny\Event](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/event.md)   
