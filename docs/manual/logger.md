@@ -44,19 +44,8 @@ Logger 的使用
 ----
 
 ```php
-echo $lang->translate('default.a.b', "tinyphp");
-// output "hello tinyphp!"
-
-// 可用数组形式调用 但无法替换里面的%s%d等字符参数
-$lang['default.a.b'];
-// output "hello %s!"
-
-// 获取配置所有数据
-$lang->getData();
-
+$logger->write($id, $message, $priority);
 ```
-#### 注意： Lang的配置数据无法动态修改
-
 
 Logger 在Application内的实例化
 ----
