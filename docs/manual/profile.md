@@ -105,13 +105,13 @@ $profile['exception']['logid'] = 'tinyphp_exception';
 $profile['bootstrap']['enabled'] = true;
 $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
-> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/bootstrap.md)   
+> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
 
 3.6 Builder 单文件打包
 ----
 > Builder是基于Phar扩展并以监听事件方式运行的打包器。   
-> Builder 只在命令行环境下执行 当前应用必须为ConsoleApplication实例  
-
+> build.enabled = true|false 开启或关闭
+> build.event_listener = class 可自定义实现打包的监听事件接口    
 ```php
 /**
  * 打包器
@@ -144,12 +144,15 @@ $profile['builder']['path'] = 'build/builder';
 $profile['builder']['config_path'] = 'build/config';
 $profile['builder']['profile_path'] = 'build/profile';
 ```
-具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/builder.md)
+具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
 
 3.7 Daemon守护进程
 ----
 
-daemon 守护进程，是基于PHP多进程扩展研发的父子进程管理
+Daemon 是基于pcntl扩展实现的父子进程守护程序。
+daemon.enabled = true|false 选择开启或关闭daemon的监听事件
+daemon.event_listener = class 可更改为自定义的daemon守护进程配置类
+
 ```php
 /**
  * 守护进程的基本设置
@@ -204,28 +207,62 @@ $profile['daemon']['daemons'] = [
     ],
 ];
 ```
-> 更多可参考 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/daemon.md)。
+> 具体可参考 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/daemon.md)。
 
-3.8 Config配置
+3.8 Configuration 配置
 ----
-> config.enabled = TRUE|FALSE application->getConfig()是否输出Configuration的实例。     
->> controller中调用 $this->config;   
->> model中调用 $this->config;   
->> viewer中调用 $config。   
-> config.path 配置文件/文件夹所在的相对路径位置 可自定义更改。  
-> config.paths Configuration实例支持多个配置的路径加载，往前覆盖重复数据。  
-> config.cache.enabled 是否开启配置的缓存功能, 缓存通过runtimeCache实现。 
+> config.enabled = true|false 选择是否开启应用的配置实例。
+
+### Configuration的使用示例
+```php
+
+// 支持参数注入和自动注解
+// controller/model
+
+/**
+* @autowired 自动注入
+*/
+protected Configuartion $config;
+
+/**
+* 参数注入
+*/
+public function __construct(Configuration $config)
+{
+  ...
+}
+
+/**
+* @autowired 自动注入
+*/
+public function config(Configurartion $config) 
+{
+  ...
+}
+```
 
 ```php
 /**
- * application配置模块设置
+ * 当前Application实例下的Configuration实例设置
+ * 
+ * config.enabled 是否开启配置
+ *      true 开启 | false 关闭
+ *  
+ * config.path 配置文件的相对路径
+ *      array [file|dir] 可配置多个路径
+ *      string file      单个配置文件路径
+ *      string dir       文件夹路径
+ * 
+ * config.cache.enabled 是否缓存配置
+ *      开启缓存，将读取所有配置文件并解析后，缓存至本地PHP文件
+ *      配置文件内严禁函数，类等命名和操作，否则缓存数据无法解析      
+ * 
  */
-$profile['config']['enabled'] = TRUE;   /* 是否开启默认配置模块 */
-$profile['config']['path'] = 'config/'; /* 配置文件相对路径 */
-$profile['config']['paths'] = [];       /*可加载多个扩展的配置文件或文件夹路径，必须为绝对或者相对路径 数据可覆盖*/
-$profile['config']['cache']['enabled'] = TRUE; /*配置模块缓存设置 提高性能*/
+$profile['config']['enabled'] = true;
+$profile['config']['path'] = 'config/';
+$profile['config']['cache']['enabled'] = true;
 ```
-更多可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/configuration-012.md)
+更多可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/configuration.md)
 
 3.9 Lang配置
 ----
