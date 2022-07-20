@@ -213,7 +213,7 @@ $profile['daemon']['daemons'] = [
 ----
 > config.enabled = true|false 选择是否开启应用的配置实例。
 
-### Configuration的使用示例
+### Configuration的实例获取
 ```php
 
 // 支持参数注入和自动注解
@@ -239,30 +239,35 @@ public function config(Configurartion $config)
 {
   ...
 }
+
+// 也可通过别名调用
+public function getConfigByAlias(ContainerInterface $container)
+{
+   return $container->get('app.config');
+}
 ```
 
+Configuration 的使用
+----
+
+
 ```php
-/**
- * 当前Application实例下的Configuration实例设置
- * 
- * config.enabled 是否开启配置
- *      true 开启 | false 关闭
- *  
- * config.path 配置文件的相对路径
- *      array [file|dir] 可配置多个路径
- *      string file      单个配置文件路径
- *      string dir       文件夹路径
- * 
- * config.cache.enabled 是否缓存配置
- *      开启缓存，将读取所有配置文件并解析后，缓存至本地PHP文件
- *      配置文件内严禁函数，类等命名和操作，否则缓存数据无法解析      
- * 
- */
-$profile['config']['enabled'] = true;
-$profile['config']['path'] = 'config/';
-$profile['config']['cache']['enabled'] = true;
+// 通过.分隔子节点
+$config->get('default.a.b');
+
+// 可用数组形式调用配置
+$config['default.a.b'];
+
+// 获取配置所有数据
+$config->get();
+
+// 动态更改配置节点
+$config['default.a.b'] = 'tinyphp';
+$config->set('default.a.b', 'tinyphp');
 ```
-更多可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
+#### 注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。
+
+具体可参考 [Configuration/配置类](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
 
 3.9 Lang配置
 ----
