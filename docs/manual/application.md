@@ -13,11 +13,11 @@ Application
 ----
 
 ### ApplicationBase
-> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/mvc.md)
+> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/mvc.md)
 ### WebApplication 
-> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/mvc.md)
+> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/mvc.md)
 ### ConsoleApplication
-> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/mvc.md)
+> 具体参考可见 [Tiny/MVC](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/mvc.md)
 
 1.3 Application的MVC整体流程
 ----
