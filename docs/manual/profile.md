@@ -109,14 +109,9 @@ $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 
 3.6 Builder 单文件打包
 ----
-> Builder是基于Phar扩展，并以监听事件方式运行的打包器。   
-> build.enabled = true|false 开启或关闭
-> build.param_name = build 通过监听命令行输入的--build参数开始打包，可通过build.param_name自定义其他参数名。   
-> build.path 打包器的配置文件夹。 
-> build.event_listener = class 可自定义实现打包的监听事件接口  
-> build.config_path 
-> builder.profile_path 配置数据和自定义profile.php默认位于APPLICATION_PATH的相对目录下，可更改build.config_path build.profile_path来更换目录。   
-> 
+> Builder是基于Phar扩展并以监听事件方式运行的打包器。   
+> Builder 只在命令行环境下执行 当前应用必须为ConsoleApplication实例  
+
 ```php
 /**
  * 打包器
