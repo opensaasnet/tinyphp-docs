@@ -298,290 +298,565 @@ $profile['log']['enabled'] = true;
 $profile['log']['writer'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
 $profile['log']['path'] = '{runtime}/log/';
 ```
-> 具体可参考 [Logger/配置日志收集器:runtime/log](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/logger.md)   
+> 具体可参考 [Logger/日志收集配置:runtime/log](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/logger.md)   
 
 3.11 Data数据源管理
 ----
-> <b>Data管理的数据源可供model|session|cache调用</b>    
-> data.enabled 是否开启数据池管理 application->getData()是否输出Data实例。   
-> data.charset 默认编码为utf8。    
-> data.policys 管理是有的数据源链接。   
->> id data源ID 在model中通过$this->data[id] 调用该数据源的实例。   
->> driver data驱动  支持mysql|mysqli|pdo_mysql|redis|memcache 可自定义扩展其他数据源管理。   
->>  其他参数为该驱动所需的连接参数，根据具体驱动实例需求设置。   
+> Data管理所有的外部数据源   
+> data.enabled  = true|false 是否开启数据池管理   
 ```php
 /**
- * 数据模块设置
- * id为 default时，即为默认缓存实例
- *  driver mysql
- *  dirver mysqli
- *  dirver pdo_mysql
- *  driver redis
- *  driver memcache
+ * 数据资源池配置
+ *  
+ *  data.enabled 开启数据资源池
+ *      true 开启|false 关闭
+ 
+ *   data.default_id 默认ID
+ *      默认调用datasource的ID
+ *  
+ *  data.drivers 驱动数组
+ *  
+ *  data.sources 数据资源池配置   
+ *      driver = db.mysqli|db.pdo| [
+ *          id => 调用时使用的ID字段
+ *          host 通用的远程资源
+ *          prot 通用的远程端口
+ *          password 通用密码
+ *          dbname 数据库名称
+ *      ]
+ *      
+ *      driver = redis [
+ *          id => 调用时使用的ID字段
+ *          host => 远程host 单独设置的host & prot 会合并到servers内
+ *          port => 远程端口
+ *          db => 选择的DB Index
+ *          servers => [[host => 服务, port => 端口]]  
+ *      ]
+ *      
+ *      driver = memcached [
+ *          servers => [[host=> 服务地址, port=> 端口]]
+ *          persistent_id => 共享实例的ID
+ *          options => [选项]
+ *      ]
  */
-$profile['data']['enabled'] = TRUE;    /* 是否开启数据池 */
-$profile['data']['charset'] = 'utf8';
-$profile['data']['policys'] = [
-    ['id' => 'default', 'driver' => 'db.mysql_pdo', 'host' => '127.0.0.1', 'port' => '3306', 'user' => 'root', 'password' => '123456', 'dbname' => 'mysql'],
-    ['id' => 'redis', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379' ],
-    ['id' => 'redis_cache', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379', 'servers' => [['host' => '127.0.0.1', 'port' => '6379'],['host' => '127.0.0.1', 'port' => '6379']]],
-    ['id' => 'redis_session', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379'],
+$profile['data']['enabled'] = true;    /* 是否开启数据池 */
+$profile['data']['default_id'] = 'default';
+$profile['data']['drivers'] = [];
+$profile['data']['sources'] = [
+    ['id' => 'default', 'driver' => 'db.pdo', 'charset' => 'utf8mb4', 'host' => '127.0.0.1', 'port' => '3306', 'user' => 'root', 'password' => '123456', 'dbname' => 'mysql'],
+    ['id' => 'redis', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379', 'db' => 0],
+    ['id' => 'redis_cache', 'driver' => 'redis', 'servers' => [['host' => '127.0.0.1', 'port' => '6379']]],
+	  ['id' => 'redis_session', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379'],
     ['id' => 'redis_queue', 'driver' => 'redis', 'host' => '127.0.0.1', 'port' => '6379'],
-    ['id' => 'memcached', 'driver' => 'memcached', 'host' => '127.0.0.1', 'port' => '11211']
+    ['id' => 'memcached', 'driver' => 'memcached', 'servers' => [['host' => '127.0.0.1', 'port' => '11211']], 'persistent_id' => null, 'options' => []]
 ];
 ```
-> 更多可参考 [Data/数据源](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/data-007.md)
+> 具体可参考 [Data/数据源配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/data.md)
 
 3.12 Cache
 ----
 
-> cache.enabled = TRUE|FALSE application->getCache()是否输出Cache的实例。     
->> controller中调用 $this->cache;   
->> model中调用 $this->cache;   
->> viewer中调用 $cache。   
-> cache.lifetime 缺省的缓存时间。 
-> cache.filepath 本地文件缓存时的相对缓存路径
-> cache.policys 缓存配置策略
->>  id  $this->cache[id] 调用具体配置的缓存实例
->>  driver 缓存驱动，具体类型的缓存类型 file|redis|memcache
->  
+> cache.enabled = true|false 是否开启应用的缓存实例。    
 ```php
 /**
- * 缓存模块设置
- * id为 default时，即为默认缓存实例 可以用Cache::getInstance()使用 或者在controller以及Model中 直接以$this->cache使用
- * driver 
- *       driver=file     文件缓存  文件缓存填写相对application的路径，不允许绝对路径
- *       driver=memcache memcache缓存 dataid=data数据池driver=memcache配置ID
- *       driver=redis    Redis缓存    dataid=data数据池driver=redis配置ID
+/**
+ * Application的缓存设置
+ * 
+ * 支持的存储器类型
+ *      file => Tiny\Cache\Storager\File 文件存储 
+ *      memcached => Tiny\Cache\Storager\Memcached memcache存储
+ *      php      => Tiny\Cache\Storager\PHP PHP文件序列化存储
+ *      redis => Tiny\Cache\Storager\Redis  Redis存储
+ *      SingleCache => Tiny\Cache\Storager\SingleCache 单文件存储 适合小数据快速缓存
+ *      
+ *  cache.enabled 开始缓存
+ *      true 开启  | false 关闭
+ * 
+ * cache.ttl 默认的缓存过期时间
+ *      ttl 可单独设置
+ * 
+ * cache.dir 默认的本地文件缓存路径
+ *      string dir 只可设置为文件夹
+ *      
+ * cache.application_storager
+ *      string 当前应用实例的缓存存储器
+ *      
+ * cache.default_id 默认的缓存资源ID
+ *      $cache 将缓存实例当缓存调用时所调用的cacheID
+ * 
+ * cache.application 
+ *      是否对application的lang container config等数据进行缓存
+ * 
+ * cache.storagers 缓存存储器的注册列表
+ *      [
+ *          key => value
+ *          存储器ID => 存储器类全程
+ *          'file' => \Tiny\Cache\File::class
+ *      ]
+ *      添加后，即可在cache.sources节点的storager引用
+ *  
+ *  cache.sources 缓存源
+ *      本框架的远程缓存源通过datasource统一调度管理
+ *      id => 调用缓存资源的ID
+ *      storager = redis [
+ *          options => [
+ *              ttl => 默认过期时间
+ *              dataid => 调用的data sources ID
+ *          ]
+ *      ]
+ *      
+ *      storager => memcached [
+ *          options => [
+ *              ttl => 默认的过期时间
+ *              dataid => 调用的data source id
+ *          ]
+ *          
+ *      ]
+ *      
+ *      storager => file [
+ *          options =>
+ *      ]
  */
-$profile['cache']['enabled'] = TRUE; /* 是否默认开启缓存模块，若不开启，则以下设置无效 */
-$profile['cache']['lifetime'] = 3600;
-$profile['cache']['filepath'] = 'runtime/cache/'; /*文件缓存方式的缓存相对路径*/
-$profile['cache']['policys'] = [
-    ['id' => 'default', 'driver' => 'redis', 'lifetime' => 3600, 'dataid' => 'redis_cache'],
-    ['id' => 'file', 'driver' => 'file', 'lifetime' => 3600, 'path' => '']
+$profile['cache']['enabled'] = true;
+$profile['cache']['ttl'] = 3600;
+$profile['cache']['dir'] = '{runtime}/cache/';
+$profile['cache']['default_id'] = 'default';
+$profile['cache']['storagers'] = [];
+$profile['cache']['sources'] = [
+   ['id' => 'default', 'storager' => 'redis', 'options' => ['ttl' => 3600, 'dataid' => 'redis_cache']],
+    ['id' => 'memcached', 'storager' => 'memcached', 'options' => ['ttl' => 3600, 'dataid' => 'memcached']],
+    ['id' => 'file', 'storager' => 'file', 'options' => ['ttl' => 3600, 'path' => '']],
+   ['id' => 'php', 'storager' => 'php', 'options' => ['ttl' => 3600, 'path' => '']]
 ];
+
+/**
+ * 当前应用实例的缓存配置
+ * 
+ * cache.application_storager ApplicationCache调用的存储器类型
+ *      默认为SingleCache 适合小数据的快速存储应用，php文件存储于opcache内存中，IO性能很好。
+ *      
+ * cache.application_ttl ApplicationCache的缓存过期时间
+ *      int 60
+ * 
+ */
+$profile['cache']['application_storager'] = SingleCache::class;
+$profile['cache']['application_ttl'] = 60;
 ```
-> 更多可参考 [Cache/缓存:demo/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/cache-008.md)
+> 具体可参考 [Cache/缓存配置:runtime/cache](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/cache.md)
 
 3.13 Session
 ----
 
-> session.enabled 是否开启框架内的session管理。   
-> session.domain决定SESSIONID的作用域。    
-> session.path 决定SESSIONID的作用路径。   
-> session.expires  决定SESSIONID的过期时间。   
-> driver=redis|memcache 支持redis|memcache两种全局共享的session方式。   
-> dataid 配置为driver对应的dataid。    
+> session.enabled  = true|false 是否开启当前应用的session实例。   
+>   
 ```php
 /**
  * HTTP SESSION设置
- * driver 为空 PHP自身Session
- * driver memcache Memcache
- * driver redis Redis作为Session */
-$profile['session']['enabled'] = TRUE;
+ * 
+ * 仅在WEB环境下有效
+ * 
+ * session.enabled 
+ *      开启框架自动代理SESSION处理
+ *      
+ * session.domain 
+ *      session cookie生效的域名设置     
+ * 
+ * session.path
+ *      session cookie生效的路径设置
+ *      
+ *  session.expires 
+ *      SESSION过期时间
+ *  
+ *  session.adapter SESSION适配器
+ *      redis 以datasource的redis实例作为session适配器
+ *      memcache 以datasource的rmemcached实例作为session适配器
+ *  
+ *  session.dataid
+ *      根据session.adapter选择对应的data资源实例
+ * */ 
+
+$profile['session']['enabled'] = true;
 $profile['session']['domain'] = '';
 $profile['session']['path'] = '/';
 $profile['session']['expires'] = 36000;
-$profile['session']['domain'] = '';
-$profile['session']['driver'] = 'redis';
-$profile['session']['dataid'] = 'redis_session';
+$profile['session']['adapter'] = 'redis';
+$profile['session']['dataid'] = 'redis';
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/controller-017.md)
+> 具体可参考 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/session.md)
 
 3.14 Filter过滤器设置
 ----
-> filter.enabled application->getFilter()是否输出Filter实例。   
-> filter.web WEB环境下的过滤器配置，可自定义更换。    
-> filter.console console环境下的过滤器配置，可自定义更换。   
-> filter.filters 可自定义实现了Tiny\Filter\IFilter接口的filter实例。   
-> 主要影响为 controller下的$this->get $this->post $this->param等参数的过滤。
-   
+> filter.enabled  = true|false 是否开启当前应用的filter实例。    
 ```php
 /**
- * 过滤器配置
+ * application的过滤器配置
+ * 
+ * filter.enabled 开启过滤
+ * 
+ * filter.web WEB环境下的过滤器设置
+ *      string classname 实现FilterInterface的过滤器
+ *      array [filterInterface]
+ * 
+ * filter.console 命令行环境下的过滤器设置
+ *      string classname 实现FilterInterface的过滤器
+ *      array [filterInterface]
+ * 
+ * filter.filters 通用过滤器设置
+ *      array [FilterInterface]
  */
-$profile['filter']['enabled'] = TRUE;
-$profile['filter']['web'] = '\Tiny\Filter\WebFilter';
-$profile['filter']['console'] = '\Tiny\Filter\ConsoleFilter';
+$profile['filter']['enabled'] = true;
+$profile['filter']['web'] = \Tiny\Filter\WebFilter::class;
+$profile['filter']['console'] = \Tiny\Filter\ConsoleFilter::class;
 $profile['filter']['filters'] = [];
 ```
 
 3.15 Cookie
 ----
-> Cookie的缺省参数配置
-> Cookie在框架中的管理，仅支持Controller的引用 $this->cookie
+> Cookie的配置。。。 
 ```php
 /**
  * HTTP COOKIE设置
+ * 
+ * 仅在web环境下生效
+ * 
+ * cookie.domain 
+ *      默认的cookie生效域名
+ * 
+ * cookie.path 
+ *      默认的cookie生效路径
+ *      
+ * cookie.expires
+ *      默认的cookie过期时间
+ *      
+ *  cookie.prefix
+ *      默认的cookie前缀
+ *      
+ *  cookie.encode
+ *      cookie是否编码             
  */
 $profile['cookie']['domain'] = '';
 $profile['cookie']['path'] = '/';
 $profile['cookie']['expires'] = 3600;
 $profile['cookie']['prefix'] = '';
-$profile['cookie']['encode'] = FALSE;
+$profile['cookie']['encode'] = false;
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/controller-017.md)
+> 具体可参考 [HttpCookie/Cookie配置:Tiny\MVC\Web\HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/cookie.md)
 
-3.16 MVC流程控制
+3.16 MVC的流程控制
 ----
-> 相关MVC流程的命名空间配置
-> controller.default 默认控制器名称    
-> controller.param 默认输入的控制器参数名 http://localhost/index.php?c=main   
-> controller.namespace web环境下的控制器命名空间   
-> controller.console console环境下的控制器命名空间   
-> controller.rpc     rpc环境下的控制器命名空间  rpc目前未实现   
->  model.namespace 模型的命名空间设置   
->  action.default 默认的动作名称   
->  action.param 默认的动作输入参数名  http://localhost/index.php?a=index   
-> response.formatJsonConfigId。   
->> 在控制器中通过$this->outFormatJSON($status=0)格式化输出JSON响应体时，通过$status 在$this->config寻找status配置节点名的值。   
+
+> 路由配置
+
 ```php
 /**
- * 控制器设置
+ * Application的路由设置
+ * 
+ * router.enabled 开启路由
+ *      true 开启 | false 关闭
+ * 
+ * router.routes 注册自定义的route 
+ *      [
+ *          routeid => route classname
+ *      ]
+ *      
+ *  router.rules 注册的路由规则    
+ *      [
+ *          route = pathinfo [
+ *              rule => [ext => 扩展名, domain => 适配域名]
+ *          ]
+ *          route = regex [
+ *              rule => [regex => 匹配正则, keys => [匹配正则后替换的键值映射表，$1-9即regex匹配数组的索引值]]
+ *          ]
+ *      ]
  */
-$profile['controller']['default'] = 'main';
-$profile['controller']['param'] = 'c';
-$profile['controller']['namespace'] = 'Controller';
-$profile['controller']['console'] = 'Controller\Console';
-$profile['controller']['rpc'] = 'Controller\RPC';
-
-
+$profile['router']['enabled'] = true;  // 是否开启router
+$profile['router']['routes'] = [];     // 注册自定义的route
+$profile['router']['rules'] = [
+    ['route' => 'pathinfo', 'rule' => ['ext' => '.html' , 'domain' => '*']],
+];
+```
+> Response 当前应用的响应实例配置。    
+```php
 /**
- * 模型
- */
-$profile['model']['namespace'] = 'Model';
-
-/**
- * 动作设置
- */
-$profile['action']['default'] = 'index';
-$profile['action']['param'] = 'a';
-
-/**
- * response输出JSON时 默认指定的配置ID
+ * Application的响应实例配置
+ *      
+ * response.formatJsonConfigId     
+ *    response格式化输出JSON 默认指定的语言包配置节点名
+ *    status => $this->lang['status'];
  */
 $profile['response']['formatJsonConfigId'] = 'status';
 
+> 当前应用的控制器实例配置。    
+/**
+ * Application的控制器配置
+ * 
+ *  controller.namespace 相对Application命名空间的命名空间配置 
+ *      default Controller Web环境下的控制器命名空间, 如App的命名空间为\App, 即\App\Controller
+ *      console Console\Console 命令行下的相对控制器命名空间
+ *      rpc    Controller\Rpc 
+ *      
+ *  controllr.src  
+ *      控制器的源码加载目录
+ *      
+ *  controller.default  
+ *      默认的控制器名称
+ *      
+ *  controller.param 
+ *      默认的控制器参数
+ *      
+ * controller.action_default 
+ *      默认的控制器动作名称
+ * 
+ * controller.action_param 
+ *      默认的控制器动作参数              
+ *          
+ */
+$profile['controller']['namespace']['default'] = 'Controller';
+$profile['controller']['namespace']['console'] = 'Controller\Console';
+$profile['controller']['namepsace']['rpc'] = 'Controller\RPC';
+$profile['controller']['src'] = 'controller/';
+$profile['controller']['default'] = 'main';
+$profile['controller']['param'] = 'c';
+$profile['controller']['action_default'] = 'index';
+$profile['controller']['action_param'] = 'a';
+```
+> 模型层配置
+
+```php
+/**
+ * Application的模型层设置
+ * 
+ * model.namespace 
+ *      相对app.namespace下的模型层命名空间  如\App\Model
+ *      
+ * model.src  模型层的存放目录
+ */
+$profile['model']['namespace'] = 'Model';
+$profile['model']['src'] = 'models/';
+```
+> 视图层控制。
+>    
+```php
 /**
  * 视图设置
- * 视图引擎绑定
- * 通过扩展名绑定解析引擎
- * php PHP原生引擎
- * 类型 tpl Smarty模板引擎
- * 类型 htm Template模板引擎
+ * 
+  *  默认模板解析的扩展名列表
+ *      .php PHP原生引擎
+ *      .tpl Smarty模板引擎
+ *      .htm|.html Template模板引擎
+ * 
+ * view.src 
+ *      视图模板存放的根目录
+ *      example: application/views/
+ *      
+ * template_dirname
+ *      视图模板目录下的默认存放子级目录
+ *          example: views/default/
+ * 
+ * lang.enabled
+ *      是否加载对应的语言包子级目录
+ *      example: views/zh_cn/ 查找不到后，去默认模板目录里views/default/寻找
+ *      
+ * view.compile  
+ *      视图模板编译后的存放目录
+ * 
+ * view.config 
+ *      视图模板的配置存放目录
+ * 
+ * view.assign 
+ *      视图模板的预先加载配置数组
+ * 
+ * view.engines 视图引擎配置
+ *      engine => 视图模板解析类名
+ *      ext => []  可解析的模板文件扩展名数组
+ *      config => [] 引擎初始化时的配置
+ *      
+ *      Example: Template引擎的插件配置
+ *          engine => \Tiny\MVC\View\Engine\Template:
+ *          config => [plugins => [
+ *              'plugin' => '\Tiny\MVC\View\Engine\Template\Url' , 'config' => []
+ *      ]]
+ *      
+ * view.helper 视图助手配置
+ *      helper => classname 助手类名
+ *      config => [] 助手初始化时的配置
+ *  
+ *  view.cache.enabled 是否开启视图缓存
+ *      默认不开启
+ *  
+ *  view.cache.dir 缓存目录
+ *  view.cache.ttl 缓存过期时间
  */
-$profile['view']['src']     = 'views/';
-$profile['view']['lang']['enabled'] = true;
-$profile['view']['cache']   = 'runtime/view/cache/';
-$profile['view']['compile'] = 'runtime/view/compile/';
-$profile['view']['config']  = 'runtime/view/config/';
-$profile['view']['engines'] = [];
+$profile['view']['basedir'] = 'views/';
+$profile['view']['theme'] = 'default';
+$profile['view']['lang'] = true;     //自动加载语言包
+$profile['view']['paths'] = [];
+$profile['view']['compile'] = '{runtime}/view/compile/';
+$profile['view']['config']  = '{runtime}/view/config/';
 $profile['view']['assign'] = [];
 
-/**
- * 路由规则设置
- */
-$profile['router']['enabled'] = TRUE; /* 是否开启router */
-$profile['router']['routers'] = [];   /*注册自定义的router*/
-$profile['router']['rules'] = [
-    ['router' => 'pathinfo', 'rule' => ['ext' => '.html'], 'domain' => ''],
-    ];
+// 引擎和助手配置
+$profile['view']['engines'] = [];
+$profile['view']['helpers'] = [];
 
-/**
- * 是否开启插件
+/*
+ * 视图的全局静态资源配置
+ * 
+ * view.static.basedir 视图静态资源的存储根目录
+ *      {static} => $profile['src']['static']
+ * 
+ * view.static.public_path 视图静态资源的公开访问地址
+ *      /static/ 当前域名下的绝对路径
+ *      http://demo.com/static 可指定域名
+ *      
+ * view.static.engine 是否开启视图解析的模板引擎
+ *      当前支持css js 图像文件的自动解析和生成
+ *       
+ * view.static.minsize 静态模板引擎复制文件的最小大小
+ *      小于最小大小的，直接注入文件内容
+ *      大于最小大小的，在staic目录下生成对应外部文件在html下加载
+ *      
+ * view.static.exts 
+ *      view.static.engine支持解析的静态资源扩展名     
+ *      
  */
-$profile['plugin']['enabled'] = FALSE;
+
+$profile['view']['static']['basedir'] = '{static}';
+$profile['view']['static']['public_path'] = '/static/';
+$profile['view']['static']['engine'] = true;
+$profile['view']['static']['minsize'] = 2048;
+$profile['view']['static']['exts'] = ['css', 'js','png', 'jpg', 'gif'];
+
 ```
-> 更多可参考 [Controller/控制器:demo/application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/controller-017.md)   
-> [Router/路由器](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/router-009.md)     
-> [Dispatcher/派发器](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/dispatcher-011.md)   
-> [Controller/控制器:demo/application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/controller-017.md)   
-> [Model/模型:demo/application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/model-018.md)   
-> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/viewer-019.md)   
-> [Plugin/插件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/plugin-016.md)   
+> 具体可参考 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/controller.md)   
+> [Router/路由器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/router.md)     
+> [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/dispatcher.md)   
+> [Model/模型:application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/model.md)   
+> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/viewer.md)   
+> [Event/MVC事件配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/event.md)   
 
 3.17 application的路径管理和配置
 ----
-> 一般设置为相对APPLICATION_PATH下的相对路径。      
-> 单文件打包时，会自动修改该选项。   
-> src配置数组全部为相对路径
-> path 配置数据，即将profile.php中的对应节点添加APPLICATION_PATH的真实路径前缀。
+
+> 路径设置   
+> 每个src下的路径节点，都可以在路径中通过{node}表示并被替代。   
+> {app} = APPLICATION_PATH   
+> {public} = $profile['src']['public'];   
 ```php
 /**
- *  应用基本设置
+ * application的路径设置
+ *
+ *  {app} 默认为APPLICATION_PATH
+ *  每个src.nodename可作为标签{nodename}按顺序在后续的路径中被自动替换
+ *
+ * src.path
+ *      application的根路径
+ *
+ * src.public
+ *      入口文件夹，存放静态文件和项目文件夹
+ *
+ * src.resources
+ *      资源文件的存放目录 一般与application目录平行
+ *
+ * src.runtime
+ *      运行时文件存放目录
+ *
+ * src.tmp
+ *      运行时的临时文件夹
+ *
+ * src.global
+ *      存放全局类的文件夹
  */
-$profile['app']['namespace'] = 'App';        /*命名空间*/
-$profile['app']['resources'] = 'resource/';  /*资源文件夹*/
-$profile['app']['runtime'] = 'runtime/';     /*运行时文件夹*/
-$profile['app']['tmp'] = 'runtime/tmp/';     /*临时文件夹*/
+$profile['src']['path'] = '{app}';                    // application源码路径
+$profile['src']['public'] = '{app}../public/';        // 入口文件夹
+$profile['src']['static'] = '{public}static/';        // 静态资源文件夹
+$profile['src']['resources'] = '{app}../resource/';   // 资源文件夹
+$profile['src']['runtime'] = '{app}../runtime/';      // 运行时文件夹
+$profile['src']['tmp'] = '{runtime}tmp/';             // 临时文件夹
+$profile['src']['global'] = 'librarys/global/';           // 存放全局类的文件夹
+$profile['src']['library'] = 'librarys/';          // 除了composer外，引入的其他项目的库文件夹
+$profile['src']['controller'] = 'controllers/web/';   // web环境下的控制器类文件夹
+$profile['src']['model'] = 'models/';                 // 模型类文件夹
+$profile['src']['console'] = 'controllers/console/';  // 命令行环境下的控制器类文件夹
+$profile['src']['rpc'] = 'controllers/rpc/';          // rpc模式下的控制器类文件夹
+$profile['src']['view'] = 'views/';                   // 存放、、】视图模板的文件夹
+$profile['src']['vendor'] = '{app}../vendor/';
+$profile['src']['event'] = 'events/';
+$profile['src']['common'] = 'librarys/common/';
+```
+> 需要进行路径处理的profile节点配置。    
 
-
+```php
 /**
- * application的源码设置
- */
-$profile['src']['path'] = '';             /*源码路径*/
-$profile['src']['global'] = 'libs/global/';       /*全局类*/
-$profile['src']['library'] = 'libs/vendor/';       /*外部引入实例库*/
-$profile['src']['controller'] = 'controllers/web/'; /*控制类*/
-$profile['src']['model'] = 'models/';           /*模型类*/
-$profile['src']['console'] = 'controllers/console/';        /*命令行控制类*/
-$profile['src']['rpc'] = 'controllers/rpc/';               /*rpc控制类*/
-$profile['src']['common'] = 'libs/common/';         /*通用类*/
-$profile['src']['view'] = 'views/';             /*视图源码*/
-
-
-/**
- * 需要添加绝对路径APPLICATION_PATH的配置项
+ * 需要做路径处理的路径节点列表
+ *      [propertis.nodename...]
+ *      作为路径传递的配置节点名，在相对路径前添加application_path的绝对路径，并替换src里的标签,./,../,相对路径等。
  */
 $profile['path'] = [
-            'src.path',
-            'app.assets',
-            'build.path',
-            'build.profile_path',
-            'build.config_path',
-            'config.path',
-            'lang.path',
-            'log.path',
-            'cache.path',
-            'view.src',
-            'view.cache',
-            'view.compile',
-            'view.config',
-            'src.library',
-            'src.global',
-            'src.controller',
-            'src.console',
-            'src.rpc',
-            'src.model',
-            'src.common',
-            'daemon.piddir',
-            'daemon.logdir'
+    'src.path',
+    'src.public',
+    'src.static',
+    'src.runtime',
+    'src.resources',
+    'src.tmp',
+    'src.vendor',
+    'builder.path',
+    'builder.profile_path',
+    'builder.config_path',
+    'config.path',
+    'lang.path',
+    'log.path',
+    'cache.dir',
+    'view.basedir',
+    'view.cache.dir',
+    'view.compile',
+    'view.config',
+    'view.path',
+    'module.tinyphp-ui.template_dirname',
+    'view.static.basedir',
+    'src.library',
+    'src.global',
+    'src.controller',
+    'src.console',
+    'src.rpc',
+    'src.model',
+    'src.common',
+    'src.event',
+    'daemon.piddir',
+    'daemon.logdir',
+    'container.provider_path',
+    'module.path',
 ];
 ```
-
+> 具体可参考 [Tiny\MVC\Application\Properties/Properties配置:application/config/profile](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/properties.md)
 3.18 application下的自动加载管理
 ----
 
-> autoloader.librarys 配置加载类库
-> KEY=VALUE 为命名空间=profile.php中的配置节点的值
-> * 为全局命名空间
-> src.rpc = $profile[src][rpc];
-> autoloader.no_realpath = TRUE|FALSE 是否在$profile[src][rpc]前加上APPLICATION_PATH;
-
 ```php
 /**
- * 自动加载库的配置
+ * 自动加载类配置
+ * xc v≈Ω
+ * autoloader.namespaces 命名空间加载配置
+ *      namespace => properties.path.nodes 
+ *      
+ *  autoloader.classes 类文件的加载配置
+ *      classname => propertis.path.node
+ *      
+ * autoloader.is_realpath  是否绝对路径加载
+ *      true 绝对路径加载
+ *      false propertis.path里的路径加载
  */
-
-$profile['autoloader']['librarys'] = [
-        'App\Controller' => 'src.controller',
-        'App\Controller\Console' => 'src.console',
-        'App\Controller\Rpc' => 'src.rpc',
-        'App\Model' => 'src.model',
+$profile['autoloader']['namespaces'] = [
+        'App' => 'src.library',
+		'App\Controller' => 'src.controller',
+		'App\Controller\Console' => 'src.console',
+		'App\Controller\Rpc' => 'src.rpc',
+		'App\Model' => 'src.model',
+        'App\Event' => 'src.event',
         'App\Common' => 'src.common',
-        '*' => 'src.global',
+		'*' => 'src.global',
 ];
-$profile['autoloader']['no_realpath'] = FALSE;   /*是否替换加载库的路径为真实路径 phar兼容性*/
+$profile['autoloader']['classes'] = [];
+$profile['autoloader']['is_realpath'] = false;
 ```
-> 更多可参考 [Tiny\Runtime：运行时](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/runtime.md)
+> 具体可参考 [Tiny\Runtime\Autoloader/自动加载配置:application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime/autoloader.md)
