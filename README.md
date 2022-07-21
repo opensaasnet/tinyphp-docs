@@ -48,7 +48,7 @@ tinyphp的适用场景与理念
 * [框架配置手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
     * [Index/入口文件:    public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index.md)
     * [Application/应用程序: application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/application.md)    
-    * [Runtime/运行时环境: application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
+    * [Runtime/运行时环境: runtime/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
         * [Env/运行时环境参数](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_env.md)  
         * [ExceptionHandler/异常处理: application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_exception.md)   
         * [ExceptionHandler/自动加载: application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_autoloader.md)   
