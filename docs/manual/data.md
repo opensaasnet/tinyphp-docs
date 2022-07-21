@@ -101,25 +101,23 @@ profile.php 配置
  *  data.enabled 开启数据资源池
  *      true 开启|false 关闭
  *  
- *  data.charset 数据库默认连接编码
- *      utf8 默认utf8
- *      false 无需自动设置编码
- *      utf8mb4 兼容表情包
- *  
  *   data.default_id 默认ID
  *      默认调用datasource的ID
  *  
  *  data.drivers 驱动数组
  *  
  *  data.sources 数据资源池配置   
+ *       mysql驱动
  *      driver = db.mysqli|db.pdo| [
  *          id => 调用时使用的ID字段
  *          host 通用的远程资源
  *          prot 通用的远程端口
+ *          charset utf8mb4 兼容表情包
  *          password 通用密码
  *          dbname 数据库名称
  *      ]
  *      
+ *      redis驱动
  *      driver = redis [
  *          id => 调用时使用的ID字段
  *          host => 远程host 单独设置的host & prot 会合并到servers内
@@ -128,13 +126,14 @@ profile.php 配置
  *          servers => [[host => 服务, port => 端口]]  
  *      ]
  *      
+ *      memcache驱动
  *      driver = memcached [
  *          servers => [[host=> 服务地址, port=> 端口]]
  *          persistent_id => 共享实例的ID
  *          options => [选项]
  *      ]
  */
-$profile['data']['enabled'] = true;    /* 是否开启数据池 */
+$profile['data']['enabled'] = true;
 $profile['data']['charset'] = 'utf8';
 $profile['data']['default_id'] = 'default';
 $profile['data']['drivers'] = [];
