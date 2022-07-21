@@ -46,7 +46,7 @@ public function getRouterByAlias(ContainerInterface $container)
 }
 ```
 
-Lang 的使用
+Router 的使用
 ----
 
 ```php
