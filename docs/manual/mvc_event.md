@@ -66,7 +66,7 @@ Application::onException 异常处理事件
 > 在MVC流程内，Application会作为实现了Tiny\Event\ExceptionListener异常监听接口的句柄，被Runtime\ExceptionHandler调用处理异常。   
 
 
-如何自定义事件
+如何自定义事件监听
 ----
 
 具体参考见 [Tiny\Event/事件管理](https://github.com/tinyphporg/tinyphp-docs/docs/lib/event.md)  
