@@ -58,7 +58,7 @@ MvcEvent MVC事件处理
     const EVENT_END_REQUEST = RequestEventListenerInterface::class . '.onEndRequest';
 }
 ```
-具体参考 [Application的MVC完整流程](https://github.com/tinyphporg/tinyphp-docs/docs/manual/application.md)
+具体参考 [Application的MVC完整流程](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/application.md)
 
 
 Application::onException 异常处理事件
@@ -69,4 +69,4 @@ Application::onException 异常处理事件
 如何自定义事件监听
 ----
 
-具体参考见 [Tiny\Event/事件管理](https://github.com/tinyphporg/tinyphp-docs/docs/lib/event.md)  
+具体参考见 [Tiny\Event/事件管理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/event.md)  
