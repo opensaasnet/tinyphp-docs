@@ -2,8 +2,7 @@ ExceptionHandler 异常处理
 ====
 
 * ExceptionHandler 通过Runtime实例化。
-* 在构造函数内，注入事件管理器 `EventManager`, 并通过`set_exception_handler` 和`set_error_handler`注册异常和错误处理句柄。
-* 
+* 在构造函数内，注入事件管理器 `EventManager`, 并通过`set_exception_handler` 和`set_error_handler`注册异常和错误处理句柄。   
 ```php
     /**
      * 初始化异常捕获句柄
