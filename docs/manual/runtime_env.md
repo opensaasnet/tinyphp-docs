@@ -73,6 +73,4 @@ class Environment implements \ArrayAccess, \Iterator, \Countable
 $env = array_merge($_SERVER, $_ENV, self::ENV_DEFAULT_LIST, self::$defaultENV);
 ```
 
-具体参考可见 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/runtime.md)
-
-
+具体参考可见 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
