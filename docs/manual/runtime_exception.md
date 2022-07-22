@@ -57,17 +57,23 @@ abstract class ApplicationBase implements ExceptionEventListener
      * @param array $exceptions 所有异常
      */
     public function onException(array $exception, array $exceptions)
-    {
+    {       
+            // 配置异常通过日志方式输出
+            
             if ($this->properties['exception.log']) {
                 $logId = $this->properties['exception.logid'];
                 $logMsg = $exception['handle'] . ':' . $exception['message'] . ' from ' . $exception['file'] . ' on line ' . $exception['line'];
                 $this->error($logId, $exception['level'], $logMsg);
             }
             
-            if ($exception['isThrow']) {
+            // 如果是需要抛出的异常级别，则直接输出
+            if ($exception['isThrow']) { 
+                // 在response没有实例化前，直接输出。否则通过debug模块输出异常信息
                 if (!$this->response) {
                     print_r($exceptions);
                 }
+                
+                // 终止执行
                 $this->end();
                
             }
