@@ -87,9 +87,11 @@ $runtime->addToClassPathMap($className, $path);
   // 全部搜索不到则返回空。
 ```
 
-* Autoloader 在Application的缓存机制
+Autoloader 在Application的缓存机制
+----
 * Application运行initAutoloader时，会根据配置加载命名空间和类路径映射，并从ApplicationCache实例中取出缓存的类路径映射，添加入Autoloader的classPathMap;
 * 在结束Application运行时，会将所有加载过的类路径映射添加到ApplicationCache;
+* 在一定程度上，可以减少类文件的寻址性能损失。
 ```php
     /**
      * 初始化应用程序的自动加载
