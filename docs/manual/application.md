@@ -63,14 +63,14 @@ Tiny\Runtime → createAppliation → Tiny\MVC\ApplicationBase::__construct;
 ```
 
 具体参考可见
-[Tiny/MVC/Request](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/request.md)   
- [Tiny/MVC/Response](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/response.md)  
- [Tiny/MVC/Bootstrap](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/bootstrap.md)  
-[Tiny/MVC/Router](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/router.md)  
- [Tiny/MVC/Dispatch](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/dispatch.md)  
- [Tiny/MVC/Controller](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/controller.md)    
- [Tiny/MVC/Model](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/model.md)   
- [Tiny/MVC/Viewer](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc/viewer.md)   
+[Tiny/MVC/Request](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_request.md)   
+ [Tiny/MVC/Response](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_response.md)  
+ [Tiny/MVC/Bootstrap](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_bootstrap.md)  
+[Tiny/MVC/Router](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_router.md)  
+ [Tiny/MVC/Dispatch](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_dispatch.md)  
+ [Tiny/MVC/Controller](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_controller.md)    
+ [Tiny/MVC/Model](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_model.md)   
+ [Tiny/MVC/Viewer](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc_viewer.md)   
 
 1.4 Application 的目录规划原则
 ----
