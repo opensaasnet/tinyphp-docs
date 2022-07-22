@@ -87,4 +87,60 @@ $runtime->addToClassPathMap($className, $path);
   // 全部搜索不到则返回空。
 ```
 
+* Autoloader 在Application的缓存机制
+* Application运行initAutoloader时，会根据配置加载命名空间和类路径映射，并从ApplicationCache实例中取出缓存的类路径映射，添加入Autoloader的classPathMap;
+* 在结束Application运行时，会将所有加载过的类路径映射添加到ApplicationCache;
+```php
+    /**
+     * 初始化应用程序的自动加载
+     */
+    protected function initAutoloader(ContainerInterface $container)
+    {
+        $autoloader = $container->get(Autoloader::class);
+        
+        // 添加命名空间
+        $namespaces = (array)$this->properties['autoloader.namespaces'];
+        foreach ($namespaces as $ns => $path) {
+            $autoloader->addToNamespacePathMap($ns, $path);
+        }
+        
+        // 获取缓存实例
+        $applicationCache = $container->get(ApplicationCache::class);
+       
+        // 合并
+        $classes = (array)$this->properties['autoloader.classes']; 
+        $classes += (array)$applicationCache->get('application.autoloader.classes');
+        
+        // 添加类路径映射
+        foreach ($classes as $className => $classPath) {
+            $autoloader->addToClassPathMap($className, $classPath);
+        }
+    }
+    
+    /**
+     * 保存已经加载的类路径映射到缓存
+     */
+    protected function saveToAutoloaderClasses()
+    {
+        $applicationCache = $this->get(ApplicationCache::class);
+        
+        // 自动加载实例
+        $autoloader = $this->get(Autoloader::class);
+        $loadedClasses  = (array)$autoloader->getLoadedClassMap();
+        
+        // 已经缓存的数据
+        $classes = (array)$applicationCache->get('application.autoloader.classes');
+        
+        // 需要更新到缓存的类映射
+        $updateClasses = [];
+        foreach ($loadedClasses as $className => $path) {
+            if (!key_exists($className, $classes)) {
+                $updateClasses[$className] = $path;
+            }
+        }
+        if ($updateClasses) {
+            $applicationCache->set('application.autoloader.classes', array_merge($classes, $updateClasses));
+        }
+    }
+```
 具体参考可见 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
