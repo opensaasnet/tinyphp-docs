@@ -51,7 +51,7 @@ tinyphp的适用场景与理念
     * [Runtime/运行时环境: runtime/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
         * [Environment/运行时环境参数](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_env.md)  
         * [ExceptionHandler/异常处理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_exception.md)   
-        * [ExceptionHandler/自动加载](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_autoloader.md)   
+        * [Autoloader/自动加载](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_autoloader.md)   
         * [Container/容器](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_container.md)   
         * [EventManager/事件管理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_event.md)   
     * [Proptrites/应用的属性配置文件:application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
