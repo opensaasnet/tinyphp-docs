@@ -100,7 +100,7 @@ class MvcEvent extends Event
 }
 ```
 
-### 事件的监听器添加，触发事件，事件处理的冒泡行为
+### 完整的事件管理流程，包括事件的监听器添加，触发事件，事件处理。
 
 ```php
 // ApplicationBase 实现了ExceptionEventListener;
