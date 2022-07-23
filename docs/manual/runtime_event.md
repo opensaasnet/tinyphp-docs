@@ -99,3 +99,35 @@ class MvcEvent extends Event
     ...
 }
 ```
+
+### 事件的监听器添加，触发事件，事件处理的冒泡行为
+
+```php
+// ApplicationBase 实现了ExceptionEventListener;
+$app = $container->get(ApplicationBase::class);
+$eventManager->addListener($app);
+
+// 触发异常事件
+$eventManager->triggerEvent(Event::EVENT_ONEXCEPTION);
+
+// ApplicationBase
+/**
+ * app实例基类
+ *
+ * @author King
+ * @package Tiny.MVC
+ * @since 2013-3-21下午04:55:41
+ * @final 2017-3-11下午04:55:41
+ */
+abstract class ApplicationBase implements ExceptionEventListener
+{
+    ...
+    
+    public function onException(Event $event, array $exception, array $exceptions)
+    {
+        ...
+        // 阻止触发EventManager注册队列里的下一个异常处理。
+        $event->stopPropagation(true);
+    }
+}
+```
