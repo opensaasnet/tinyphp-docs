@@ -49,3 +49,53 @@ interface ExceptionEventListener extends EventListenerInterface
 }
 ```
 
+* Event事件是一系列委托触发EventListenerInterface成员函数的集合，定义有两种方式。
+    * EventListener的类名，触发该事件，将会触发该EventListener所有接口的成员函数。
+    * EventListener的类名+ '.' + 该EventListener的指定成员函数名称，触发该事件，只会触发符合对应EventListener的指定成员函数名称。
+```php
+/**
+ * 事件
+ *
+ * @package Tiny.Event
+ * @since 2022年1月11日下午11:32:55
+ * @final 2022年1月11日下午11:32:55
+ */
+class Event implements EventInterface
+{
+    
+    /**
+     * 错误事件
+     *
+     * @var
+     */
+    const EVENT_ONEXCEPTION = ExceptionEventListener::class;
+    
+     ...
+}
+
+/**
+ * MVC事件
+ *
+ * @package Tiny.MVC
+ * @since 2022年1月15日上午8:58:45
+ * @final 2022年1月15日上午8:58:45
+ */
+class MvcEvent extends Event
+{   
+    /**
+     * 引导事件
+     *
+     * @var string
+     */
+    const EVENT_BOOTSTRAP = BootstrapEventListenerInterface::class;
+    
+    /**
+     * 路由初始化事件
+     *
+     * @var string
+     */
+    const EVENT_ROUTER_STARTUP = RouteEventListenerInterface::class . '.onRouterStartup';
+    
+    ...
+}
+```
