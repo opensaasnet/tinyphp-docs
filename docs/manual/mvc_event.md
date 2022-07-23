@@ -70,3 +70,4 @@ Application::onException 异常处理事件
 ----
 
 具体参考见 [Tiny\Event/事件管理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/event.md)  
+[Tiny\Event/运行时的事件管理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_event.md)  
