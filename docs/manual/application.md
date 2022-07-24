@@ -17,7 +17,7 @@ Application在Tiny\Runtime\Runtime唯一实例上创建和销毁，同时管理�
 ---
 > profile.php是Application的主配置文件，Application通过Tiny\MVC\Application\Properties将其实例化。      
 
-具体参考可见 [Proptrites/Application配置文件:application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
+具体参考可见配置手册 [Proptrites/Application配置文件:application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
 
 1.2 Application的实例化
 ----
@@ -66,7 +66,7 @@ Tiny\Runtime → createAppliation → Tiny\MVC\ApplicationBase::__construct;
 结束 Response::output() → Response::end();
 ```
 
-具体参考可见
+具体参考可见标准库
 [Tiny/MVC/Request](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)   
  [Tiny/MVC/Response](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)  
  [Tiny/MVC/Bootstrap](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)  
