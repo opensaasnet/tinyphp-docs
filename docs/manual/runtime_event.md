@@ -134,4 +134,4 @@ abstract class ApplicationBase implements ExceptionEventListener
 }
 ```
 
-具体参考可见 [运行时环境/Tiny\Runtime](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
+可参考标准库 [运行时环境/Tiny\Runtime](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
