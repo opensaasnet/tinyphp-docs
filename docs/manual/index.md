@@ -74,8 +74,8 @@ define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
 <b>APPLICATION_PATH</b> 定义为application程序集的文件夹路径，必须设置;
 
 #### 1.2.3 参考标准库
-> [Tiny\Runtime:运行时标准库](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/runtime.md)  
-> [Tiny\MVC:MVC库](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/lib/mvc.md)  
+> [Tiny\Runtime:运行时标准库](https://github.com/tinyphporg/tinyphp/blob/master/docs/lib/runtime.md)  
+> [Tiny\MVC:MVC库](https://github.com/tinyphporg/tinyphp/blob/master/docs/lib/mvc.md)  
 
 
 ### 1.3 在不同运行环境下的入口文件使用
@@ -85,7 +85,7 @@ define('APPLICATION_PATH', dirname(__DIR__) . '/application/');
 > 参数c为控制器名称,缺省为main,参数c和缺省控制器可在profile.php中的controller节点修改   
 > 参数a为动作名称，缺省为index,参数a和缺省动作名可在profile.php中的action节点修改   
 > Main控制器 即为调用 application/controllers/web/Main下的控制器类   
-> 具体配置可参考: [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile-003.md)   
+> 可参考配置手册: [Proptrites/应用配置: application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile.md)   
 ```shell
 #以上部署在正确可运行的环境
 curl "http://localhost/index.php?c=main&a=index"
@@ -94,7 +94,7 @@ curl "http://localhost/index.php?c=main&a=index"
 * 伪静态路由   
 > 需在profile.php内 router.enable  = TRUE;   
 > 并配置对应域名下的router.rules为router.pathinfo   
-> 具体配置可参考: [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile-003.md)    
+> 可参考配置手册: [Proptrites/应用配置: application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile.md)    
 
 
 
@@ -123,7 +123,7 @@ service tiny-daemon stop
 ````
 * --id 为profile.php的daemon.policys对应配置节点,缺省为daemon.id配置的默认节点 
 * -d --daemon=start/stop 控制守护进程开启/关闭
-> 具体配置可参考: [Proptrites/应用配置:  demo/application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile-003.md) 
+> 可参考配置手册: [Proptrites/应用配置: application/config/profile.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/profile.md) 
 ```php
 #缺省默认配置
 php demo/public/index.php -d
