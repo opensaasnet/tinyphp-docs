@@ -730,12 +730,12 @@ $profile['view']['static']['minsize'] = 2048;
 $profile['view']['static']['exts'] = ['css', 'js','png', 'jpg', 'gif'];
 
 ```
-> 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_controller.md)   
-> [Router/路由器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_router.md)     
-> [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_dispatcher.md)   
-> [Model/模型:application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_model.md)   
-> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_viewer.md)   
-> [Event/MVC事件配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_event.md)   
+> 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_controller.md)   
+> [Router/路由器配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_router.md)     
+> [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_dispatcher.md)   
+> [Model/模型:application/models](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_model.md)   
+> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_viewer.md)   
+> [Event/MVC事件配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_event.md)   
 
 3.17 application的路径管理和配置
 ----
