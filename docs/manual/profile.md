@@ -105,7 +105,7 @@ $profile['exception']['logid'] = 'tinyphp_exception';
 $profile['bootstrap']['enabled'] = true;
 $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
-> 可参考配置手册 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
+> 可参考配置手册 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/bootstrap.md)   
 
 3.6 Builder 单文件打包
 ----
@@ -144,7 +144,7 @@ $profile['builder']['path'] = 'build/builder';
 $profile['builder']['config_path'] = 'build/config';
 $profile['builder']['profile_path'] = 'build/profile';
 ```
-可参考配置手册 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
+可参考配置手册 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/builder.md)
 
 3.7 Daemon守护进程
 ----
