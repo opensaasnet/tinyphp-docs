@@ -189,7 +189,7 @@ profile.php 配置
  *  session.expires 
  *      SESSION过期时间
  *  
- *  session.adapters 添加自定义的SESSION自定义适配器
+ *  session.adapters 添加自定义的SESSION适配器
  *      adapterid 适配器ID
  *      adapterClass 实现了session适配器接口的自定义session adapter class
  *      
