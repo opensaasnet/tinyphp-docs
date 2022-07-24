@@ -122,7 +122,51 @@ abstract class ControllerBase
 }
 ```
 
+profile.php的控制器配置
+----
+```php
+/**
+ * Application的响应实例配置
+ *
+ * response.formatJsonConfigId
+ *    response格式化输出JSON 默认指定的语言包配置节点名
+ *    status => $this->lang['status'];
+ */
+$profile['response']['formatJsonConfigId'] = 'status';
 
+/**
+ * Application的控制器配置
+ * 
+ *  controller.namespace 相对Application命名空间的命名空间配置 
+ *      default Controller Web环境下的控制器命名空间, 如App的命名空间为\App, 即\App\Controller
+ *      console Console\Console 命令行下的相对控制器命名空间
+ *      rpc    Controller\Rpc 
+ *      
+ *  controllr.src  
+ *      控制器的源码加载目录
+ *      
+ *  controller.default  
+ *      默认的控制器名称
+ *      
+ *  controller.param 
+ *      默认的控制器参数
+ *      
+ * controller.action_default 
+ *      默认的控制器动作名称
+ * 
+ * controller.action_param 
+ *      默认的控制器动作参数              
+ *          
+ */
+$profile['controller']['namespace']['default'] = 'Controller';
+$profile['controller']['namespace']['console'] = 'Controller\Console';
+$profile['controller']['namepsace']['rpc'] = 'Controller\RPC';
+$profile['controller']['src'] = 'controller/';
+$profile['controller']['default'] = 'main';
+$profile['controller']['param'] = 'c';
+$profile['controller']['action_default'] = 'index';
+$profile['controller']['action_param'] = 'a';
+```
 
 具体参考可见 [Tiny\MVC/MVC库](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
 
