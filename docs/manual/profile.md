@@ -55,7 +55,7 @@ $profile['debug']['param_name'] = 'debug';     // 命令行下  通过--debug开
 $profile['debug']['cache']['enabled'] = true; // 是否在debug模式下启用应用缓存
 $profile['debug']['console'] = false;   // web环境下 debug信息是否通过javascript的console.log输出在console
 ```
-> 具体参考 [Debug/调试模式](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/debug.md)
+> 可参考配置手册 [Debug/调试模式](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/debug.md)
 
 3.4 ExceptionHandler 异常处理句柄
 ----
@@ -81,7 +81,7 @@ $profile['exception']['enabled'] = true;
 $profile['exception']['log'] = true;
 $profile['exception']['logid'] = 'tinyphp_exception';
 ```
-> 具体参考 [Runtime.ExceptionHandler/异常句柄](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/exception.md)   
+> 可参考配置手册 [Runtime.ExceptionHandler/异常句柄](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/exception.md)   
 
 3.5 Boostrap 引导
 ---- 
@@ -105,7 +105,7 @@ $profile['exception']['logid'] = 'tinyphp_exception';
 $profile['bootstrap']['enabled'] = true;
 $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
-> 具体可参考 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
+> 可参考配置手册 [Bootstrap/引导程序:application/events/Bootstrap.php](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/bootstrap.md)   
 
 3.6 Builder 单文件打包
 ----
@@ -144,7 +144,7 @@ $profile['builder']['path'] = 'build/builder';
 $profile['builder']['config_path'] = 'build/config';
 $profile['builder']['profile_path'] = 'build/profile';
 ```
-具体可参考 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
+可参考配置手册 [Builder/打包单一可执行文件](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/builder.md)
 
 3.7 Daemon守护进程
 ----
@@ -207,7 +207,7 @@ $profile['daemon']['daemons'] = [
     ],
 ];
 ```
-> 具体可参考 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/daemon.md)。
+> 可参考配置手册 [Daemon/守护进程](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/daemon.md)。
 
 3.8 Configuration 配置
 ----
@@ -251,7 +251,7 @@ $config->set('default.a.b', 'tinyphp');
 ```
 #### 注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。
 
-具体可参考 [Configuration配置/应用配置类:application/config](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
+可参考配置手册 [Configuration配置/应用配置类:application/config](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/configuration.md)
 
 3.9 Lang配置
 ----
@@ -277,7 +277,7 @@ $profile['lang']['locale'] = 'zh_cn';        // 默认语言包
 $profile['lang']['path'] = 'lang/';          // 存放语言包的目录
 $profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高性能
 ```
-> 具体可参考 [Lang/语言包配置:application/lang](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lang.md)
+> 可参考配置手册 [Lang/语言包配置:application/lang](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lang.md)
 
 3.10 Logger配置
 ----
@@ -298,7 +298,7 @@ $profile['log']['enabled'] = true;
 $profile['log']['writer'] = 'file';    /*默认可以设置file|syslog 设置类型为file时，需要设置log.path为可写目录路径 */
 $profile['log']['path'] = '{runtime}/log/';
 ```
-> 具体可参考 [Logger/日志收集配置:runtime/log](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/logger.md)   
+> 可参考配置手册 [Logger/日志收集配置:runtime/log](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/logger.md)   
 
 3.11 Data数据源管理
 ----
@@ -351,7 +351,7 @@ $profile['data']['sources'] = [
     ['id' => 'memcached', 'driver' => 'memcached', 'servers' => [['host' => '127.0.0.1', 'port' => '11211']], 'persistent_id' => null, 'options' => []]
 ];
 ```
-> 具体可参考 [Data/数据源配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/data.md)
+> 可参考配置手册 [Data/数据源配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/data.md)
 
 3.12 Cache
 ----
@@ -442,7 +442,7 @@ $profile['cache']['sources'] = [
 $profile['cache']['application_storager'] = SingleCache::class;
 $profile['cache']['application_ttl'] = 60;
 ```
-> 具体可参考 [Cache/缓存配置:runtime/cache](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/cache.md)
+> 可参考配置手册 [Cache/缓存配置:runtime/cache](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/cache.md)
 
 3.13 Session
 ----
@@ -482,7 +482,7 @@ $profile['session']['expires'] = 36000;
 $profile['session']['adapter'] = 'redis';
 $profile['session']['dataid'] = 'redis';
 ```
-> 具体可参考 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/session.md)
+> 可参考配置手册 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/session.md)
 
 3.14 Filter过滤器设置
 ----
@@ -509,6 +509,8 @@ $profile['filter']['web'] = \Tiny\Filter\WebFilter::class;
 $profile['filter']['console'] = \Tiny\Filter\ConsoleFilter::class;
 $profile['filter']['filters'] = [];
 ```
+
+> 可参考配置手册 [Filter配置:Tiny\Filter](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/filter.md)
 
 3.15 Cookie
 ----
@@ -540,7 +542,7 @@ $profile['cookie']['expires'] = 3600;
 $profile['cookie']['prefix'] = '';
 $profile['cookie']['encode'] = false;
 ```
-> 具体可参考 [HttpCookie/Cookie配置:Tiny\MVC\Web\HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/cookie.md)
+> 可参考配置手册 [HttpCookie/Cookie配置:Tiny\MVC\Web\HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/cookie.md)
 
 3.16 MVC的流程控制
 ----
@@ -728,7 +730,7 @@ $profile['view']['static']['minsize'] = 2048;
 $profile['view']['static']['exts'] = ['css', 'js','png', 'jpg', 'gif'];
 
 ```
-> 具体可参考 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/controller.md)   
+> 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/controller.md)   
 > [Router/路由器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/router.md)     
 > [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/dispatcher.md)   
 > [Model/模型:application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/model.md)   
@@ -828,7 +830,7 @@ $profile['path'] = [
     'module.path',
 ];
 ```
-> 具体可参考 [Tiny\MVC\Application\Properties/Properties配置:application/config/profile](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/properties.md)
+> 可参考配置手册 [Tiny\MVC\Application\Properties/Properties配置:application/config/profile](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/properties.md)
 3.18 application下的自动加载管理
 ----
 
@@ -859,4 +861,4 @@ $profile['autoloader']['namespaces'] = [
 $profile['autoloader']['classes'] = [];
 $profile['autoloader']['is_realpath'] = false;
 ```
-> 具体可参考 [Tiny\Runtime\Autoloader/自动加载配置:application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime/autoloader.md)
+> 可参考配置手册 [Tiny\Runtime\Autoloader/自动加载配置:application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime/autoloader.md)
