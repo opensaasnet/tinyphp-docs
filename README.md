@@ -1,7 +1,7 @@
-Tinyphp-framework
+tinyphp-framework
 ====
 
-tinyphp的适用场景与理念
+tinyphp-framework的适用场景与理念
 ---- 
 * 客户端应用(IOS/Android/H5/小程序)的API接口开发：
     * 高性能，大并发。
