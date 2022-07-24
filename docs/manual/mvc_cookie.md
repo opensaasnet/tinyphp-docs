@@ -1,6 +1,6 @@
-Cookie 语言包
+Cookie
 ====
-   WebApplication实例的Cookie实例   
+   基于WebApplication的Cookie实例   
    通过profile.php的cookie配置。
 
 ### Cookie的实例获取
