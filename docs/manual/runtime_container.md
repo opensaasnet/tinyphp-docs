@@ -44,4 +44,4 @@ class Bootstrap
    }
 }
 ```
-具体参考可见 [Tiny\DI/容器注入](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/di.md)
+可参考标准库 [Tiny\DI/容器注入](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/di.md)
