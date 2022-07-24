@@ -74,7 +74,7 @@ tinyphp的适用场景与理念
             * [Dispatcher/派发器配置:application/views/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_dispatcher.md)
             * [Request/请求配置:HttpRequest](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_request.md)
             * [Response/响应配置:HttpResponse](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_response.md)
-            * [Coonie:HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_cookie.md)
+            * [Cookie:HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_cookie.md)
             * [Session/HttpSession](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_session.md)            
     
 * [框架标准库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/)
