@@ -1,4 +1,4 @@
-Application
+Application 应用程序
 ====
 
 1.0 Application特性
