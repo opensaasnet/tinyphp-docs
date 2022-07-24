@@ -30,6 +30,7 @@ class ApplicationBase
         return $this->getDispatcher()->dispatch($cname, $aname, $mname, $args, $isMethod);
     }
 }
+```
 
 * 派发器的构建主要包括获取控制器的实例，并执行动作。   
     * 一个Action的执行包括三个动作,beginExceute, nameAction,endExceute;   
