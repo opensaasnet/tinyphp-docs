@@ -33,7 +33,7 @@ public function cookie(HttpCookie $cookie)
 }
 
 // 也可通过别名调用
-public function getLangByAlias(ContainerInterface $container)
+public function getCookieByAlias(ContainerInterface $container)
 {
    return $container->get('app.cookie');
 }
