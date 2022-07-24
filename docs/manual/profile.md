@@ -482,7 +482,7 @@ $profile['session']['expires'] = 36000;
 $profile['session']['adapter'] = 'redis';
 $profile['session']['dataid'] = 'redis';
 ```
-> 可参考配置手册 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/session.md)
+> 可参考配置手册 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_session.md)
 
 3.14 Filter过滤器设置
 ----
@@ -542,7 +542,7 @@ $profile['cookie']['expires'] = 3600;
 $profile['cookie']['prefix'] = '';
 $profile['cookie']['encode'] = false;
 ```
-> 可参考配置手册 [HttpCookie/Cookie配置:Tiny\MVC\Web\HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc/cookie.md)
+> 可参考配置手册 [Cookie配置:Tiny\MVC\Web\HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_cookie.md)
 
 3.16 MVC的流程控制
 ----
@@ -730,12 +730,12 @@ $profile['view']['static']['minsize'] = 2048;
 $profile['view']['static']['exts'] = ['css', 'js','png', 'jpg', 'gif'];
 
 ```
-> 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/controller.md)   
-> [Router/路由器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/router.md)     
-> [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/dispatcher.md)   
-> [Model/模型:application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/model.md)   
-> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/viewer.md)   
-> [Event/MVC事件配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc/event.md)   
+> 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_controller.md)   
+> [Router/路由器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_router.md)     
+> [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_dispatcher.md)   
+> [Model/模型:application/models](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_model.md)   
+> [Viewer/视图:demo/application/views](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_viewer.md)   
+> [Event/MVC事件配置](https://github.com/tinyphporg/tinyphp/blob/master/docs/manual/mvc_event.md)   
 
 3.17 application的路径管理和配置
 ----
@@ -830,7 +830,7 @@ $profile['path'] = [
     'module.path',
 ];
 ```
-> 可参考配置手册 [Tiny\MVC\Application\Properties/Properties配置:application/config/profile](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/properties.md)
+> 可参考配置手册 [Tiny\MVC\Application\Properties/Properties配置:application/config/profile](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
 3.18 application下的自动加载管理
 ----
 
@@ -861,4 +861,4 @@ $profile['autoloader']['namespaces'] = [
 $profile['autoloader']['classes'] = [];
 $profile['autoloader']['is_realpath'] = false;
 ```
-> 可参考配置手册 [Tiny\Runtime\Autoloader/自动加载配置:application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime/autoloader.md)
+> 可参考配置手册 [Tiny\Runtime\Autoloader/自动加载配置:application/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_autoloader.md)
