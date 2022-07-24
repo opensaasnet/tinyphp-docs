@@ -145,4 +145,4 @@ Autoloader 在Application的缓存机制
         }
     }
 ```
-具体参考可见 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
+可参考标准库 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
