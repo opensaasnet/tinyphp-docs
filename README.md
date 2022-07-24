@@ -46,7 +46,7 @@ tinyphp-framework的适用场景与理念
   + [tinyphp的系统设计原则](https://github.com/tinyphporg/tinyphp-docs/edit/master/docs/team/README.md#tinyphp%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99)
 * [框架使用手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/) 
    + [Index/入口文件:    public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index.md)   
-   + [Runtime/运行时环境: runtime/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
+   + [Runtime/运行时环境: runtime](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
       - [Environment/运行时环境参数](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_env.md)  
       - [ExceptionHandler/异常处理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_exception.md)   
       - [Autoloader/自动加载](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_autoloader.md)   
