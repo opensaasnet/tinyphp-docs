@@ -1,4 +1,7 @@
-  * [框架标准库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/)
+  框架标准库
+  ====
+  
+* [框架标准库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/)
     * [Tiny：工具包](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/tiny.md)
     * [Tiny\Runtime：运行时](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
     * [Tiny\Build：打包](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/build.md)
