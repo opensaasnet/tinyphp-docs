@@ -17,17 +17,17 @@ Application在Tiny\Runtime\Runtime唯一实例上创建和销毁，同时管理�
 ---
 > profile.php是Application的主配置文件，Application通过Tiny\MVC\Application\Properties将其实例化。      
 
-具体参考可见配置手册 [Proptrites/Application配置文件:application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
+可参考配置手册 [Proptrites/Application配置文件:application/config/profile.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/profile.md)
 
 1.2 Application的实例化
 ----
 
 ### ApplicationBase
-> 具体参考可见 [Tiny/MVC/Application](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
+> 可参考标准库 [Tiny/MVC/Application](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
 ### WebApplication 
-> 具体参考可见 [Tiny/MVC/WebApplication](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
+> 可参考标准库 [Tiny/MVC/WebApplication](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
 ### ConsoleApplication
-> 具体参考可见 [Tiny/MVC/ConsoleApplication](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/mvc.md)
+> 可参考标准库 [Tiny/MVC/ConsoleApplication](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/mvc.md)
 
 1.3 Application的MVC整体流程
 ----
@@ -66,7 +66,7 @@ Tiny\Runtime → createAppliation → Tiny\MVC\ApplicationBase::__construct;
 结束 Response::output() → Response::end();
 ```
 
-具体参考可见标准库
+可参考标准库
 [Tiny/MVC/Request](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)   
  [Tiny/MVC/Response](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)  
  [Tiny/MVC/Bootstrap](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)  
