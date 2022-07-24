@@ -189,6 +189,10 @@ profile.php 配置
  *  session.expires 
  *      SESSION过期时间
  *  
+ *  session.adapters 添加自定义的SESSION自定义适配器
+ *      adapterid 适配器ID
+ *      adapterClass 实现了session适配器接口的自定义session adapter class
+ *      
  *  session.adapter SESSION适配器
  *      redis 以datasource的redis实例作为session适配器
  *      memcache 以datasource的rmemcached实例作为session适配器
@@ -201,8 +205,9 @@ $profile['session']['enabled'] = true;
 $profile['session']['domain'] = '';
 $profile['session']['path'] = '/';
 $profile['session']['expires'] = 36000;
+$profile['session']['adapters'] = [];
 $profile['session']['adapter'] = 'redis';
-$profile['session']['dataid'] = 'redis';
+$profile['session']['dataid'] = 'redis_session';
 ```
 
 ### 可参考标准库   
