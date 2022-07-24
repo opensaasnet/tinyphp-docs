@@ -6,7 +6,7 @@ MVC的控制流程主要包括: `请求Request`, `引导Bootstrap`, `路由Route
 Dispatch 派发
 ----
 
-* Application派发的主要流程是从Request获取经过路由匹配的Module, Controller，并开始执行派发动作。   
+* Application派发的主要流程是从Request获取经过路由匹配的Module, Controller，Action, 并通过派发器(Dispatcher)执行派发动作。   
     * 控制器的匹配主要通过路由匹配实现，否则使用默认的模块名，控制器名称和动作名。   
     * Action分为两种，名称后缀带Action的动作函数,及普通的成员函数。   
 ```php
@@ -68,4 +68,61 @@ class Dispatcher
     ...
 }
 ```
+
+Controller 控制器
+----
+
+* 控制器的实现 
+      * Web环境下，需要继承Tiny\MVC\Controller\Controller
+      * Console环境下，需要继承Tiny\MVC\Controller\ConsoleController
+      * 他们的基类是Tiny\MVC\Controller\ControllerBase;
+ * ControllerBase的实现包括三部分，自动注入的实例，视图处理函数和无视图情况下的输出，模型及其他类的自动注入。
+```php
+/**
+ * 控制器积类
+ *
+ * @package Tiny.Application.Controller
+ * @since 2017年3月12日下午2:57:20
+ * @final 2017年3月12日下午2:57:20
+ */
+abstract class ControllerBase
+{
+   // 自动注入的参数边
+    
+    /**
+     * 当前应用程序实例
+     *
+     * @var ApplicationBase
+     */
+    protected $application;
+    
+    /**
+     * 当前请求参数
+     *
+     * @var Request
+     */
+    protected $request;
+    
+    /**
+     * 当前响应实例
+     *
+     * @var Response
+     */
+    protected $response;
+
+    /**
+     * 模块设置数组
+     * 
+     * @autowired
+     * @var Module
+     */
+    protected ?Module $module = null;
+    
+    ...
+}
+```
+
+
+
+具体参考可见 [Tiny\MVC/MVC库](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
 
