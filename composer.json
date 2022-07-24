@@ -1,6 +1,6 @@
 {
     "name": "tinyphporg/tinyphp-docs",
-    "description": "Docs of tinyphp-framework 2.0",
+    "description": "tinyphp-framework v2.0的中文文档",
     "license" : "Apache-2.0",
     "type": "library",
     "version": "2.0.0",
