@@ -112,7 +112,7 @@ php public/index.php
 > 本框架的编码规范遵守PSR规范标准，仅少数细节做灵活调整。    
 * [环境搭建/lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
 * [Demo/tinyphp: http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)
-* [编码规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/standard/coding.md)
+* 编码规范
   * [文件结构](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_file.md)   
   * [程序的排版](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_program_typesetting.md)    
   * [命名规则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_rules.md)  
@@ -121,13 +121,13 @@ php public/index.php
   * [函数设计](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding/function.md)  
   * [IDE的选择](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_ide.md)  
   * [编码规范的一些示例](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_example.md)  
-* [数据库查询/设计/操作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db.md)
+* 数据库查询/设计/操作规范
   * [查询规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_select.md)
   * [库和表的规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_dbtable.md)
   * [数据库设计原则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_design.md)
   * [数据库的配置优化](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_optimization.md)
 * [团队协作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/team.md)
-* [框架使用手册](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/readme.md) 
+* 框架使用手册
    * [Index/入口文件:    public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index.md)      
    * [Runtime/运行时环境: runtime/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
       * [Environment/运行时环境参数](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_env.md)  
@@ -158,7 +158,7 @@ php public/index.php
       * [MVC/Web/HttpCookie](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_cookie.md)
       * [Mvc/Web/HttpSession](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_session.md)            
     
-* [框架标准库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/)
+* 框架标准库参考
     * [Tiny：工具包](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/tiny.md)
     * [Tiny\Runtime：运行时](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
     * [Tiny\Build：打包](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/build.md)
