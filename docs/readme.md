@@ -1,6 +1,7 @@
 中文手册
 ---- 
-> 本框架的编码规范基本遵守PSR规范标准，仅少数细节做灵活调整。
+ > 本框架的编码规范基本遵守PSR规范标准，仅少数细节做灵活调整。    
+ 
 * [环境搭建/lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
 * [Demo/tinyphp: http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)
 * [编码规范](https://github.com/tinyphporg/tinyphp-docs/tree/master/docs/coding)
