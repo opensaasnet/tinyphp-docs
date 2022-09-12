@@ -351,14 +351,16 @@ $profile['data']['sources'] = [
     ['id' => 'memcached', 'driver' => 'memcached', 'servers' => [['host' => '127.0.0.1', 'port' => '11211']], 'persistent_id' => null, 'options' => []]
 ];
 ```
+
+
 > 可参考配置手册 [Data/数据源配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/data.md)
 
 3.12 Cache
 ----
 
 > cache.enabled = true|false 是否开启应用的缓存实例。    
+
 ```php
-/**
 /**
  * Application的缓存设置
  * 
@@ -442,13 +444,14 @@ $profile['cache']['sources'] = [
 $profile['cache']['application_storager'] = SingleCache::class;
 $profile['cache']['application_ttl'] = 60;
 ```
+
 > 可参考配置手册 [Cache/缓存配置:runtime/cache](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/cache.md)
 
 3.13 Session
 ----
 
 > session.enabled  = true|false 是否开启当前应用的session实例。   
->   
+
 ```php
 /**
  * HTTP SESSION设置
@@ -473,7 +476,7 @@ $profile['cache']['application_ttl'] = 60;
  *  
  *  session.dataid
  *      根据session.adapter选择对应的data资源实例
- * */ 
+ **/ 
 
 $profile['session']['enabled'] = true;
 $profile['session']['domain'] = '';
@@ -482,11 +485,13 @@ $profile['session']['expires'] = 36000;
 $profile['session']['adapter'] = 'redis';
 $profile['session']['dataid'] = 'redis';
 ```
+
 > 可参考配置手册 [Session配置:Tiny/MVC/Web/Session](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_session.md)
 
 3.14 Filter过滤器设置
 ----
 > filter.enabled  = true|false 是否开启当前应用的filter实例。    
+
 ```php
 /**
  * application的过滤器配置
@@ -577,7 +582,9 @@ $profile['router']['rules'] = [
     ['route' => 'pathinfo', 'rule' => ['ext' => '.html' , 'domain' => '*']],
 ];
 ```
+
 > Response 当前应用的响应实例配置。    
+
 ```php
 /**
  * Application的响应实例配置
@@ -587,8 +594,12 @@ $profile['router']['rules'] = [
  *    status => $this->lang['status'];
  */
 $profile['response']['formatJsonConfigId'] = 'status';
+```
+
 
 > 当前应用的控制器实例配置。    
+
+```php
 /**
  * Application的控制器配置
  * 
@@ -637,7 +648,8 @@ $profile['model']['namespace'] = 'Model';
 $profile['model']['src'] = 'models/';
 ```
 > 视图层控制。
->    
+
+
 ```php
 /**
  * 视图设置
@@ -728,8 +740,8 @@ $profile['view']['static']['public_path'] = '/static/';
 $profile['view']['static']['engine'] = true;
 $profile['view']['static']['minsize'] = 2048;
 $profile['view']['static']['exts'] = ['css', 'js','png', 'jpg', 'gif'];
-
 ```
+
 > 可参考配置手册 [Controller/控制器配置:application/controllers/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_controller.md)   
 > [Router/路由器配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_router.md)     
 > [Dispatcher/派发器配置](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/mvc_dispatcher.md)   
