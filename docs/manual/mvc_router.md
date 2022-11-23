@@ -1,8 +1,13 @@
 Router 路由器
 ====
-   当前Application实例的Router实例  
-```   
-   位于MVC流程的开始位置   
+
+
+当前Application实例的Router实例  
+
+
+### Router在Application内的实例化 
+```php   
+
    $application->run();   
    ↓   
    引导 Bootstrap   
@@ -12,7 +17,9 @@ Router 路由器
    派发 Dispatch;   
 ```
 
+
 ### Router的实例获取
+
 ```php
 
 // 对Router的操作，仅在派发动作前有效，如引导事件等
@@ -46,8 +53,7 @@ public function getRouterByAlias(ContainerInterface $container)
 }
 ```
 
-Router 的使用
-----
+### Router 的使用
 
 ```php
 // 通过.分隔子节点
@@ -63,11 +69,11 @@ $lang['default.a.b'];
 $lang->getData();
 
 ```
-#### 注意： Lang的配置数据无法动态修改
+
+`注意： Lang的配置数据无法动态修改`
 
 
-Router 在Application内的实例化
-----
+### Router 在Application内的实例化
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -112,8 +118,8 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-profile.php 配置
-----
+### Router在profile.php内的配置项
+
 ```php
 /**
  * Application的路由设置
@@ -143,5 +149,8 @@ $profile['router']['rules'] = [
 ];
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
+
 [Router/路由器:Tiny\MVC\Router](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/mvc/router.md)

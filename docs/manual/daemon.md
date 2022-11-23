@@ -1,7 +1,9 @@
 Daemon 服务端守护进程
 ====
 
-主要基于PHP扩展pcntl实现， 需要安装pcntl扩展;
+基于PHP的pcntl扩展实现， 
+* 需要安装pcntl扩展;
+
 
 ### 使用示例
 ```
@@ -15,9 +17,9 @@ php public/index.php --daemon=stop
 php tinyphp.phar --daemon=start|stop
 ```
 
-Application内的打包器初始化
-----
-通过Application中属性实例Properties的执行构造函数时，获取打包器配置，并注册到事件监听器中。 
+### Application内的实例化
+
+通过Application中属性实例Properties的执行构造函数时，获取守护进程的配置，并注册到事件监听器中。 
 
 ```php
 namespace Tiny\MVC\Application;
@@ -62,14 +64,14 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-Daemon的事件监听实现流程
-----
+### Daemon的事件监听实现流程
 
-通过MvcEvent::EVENT_ROUTER_STARTUP事件触发事件监听类Tiny\MVC\Event\BuilderEventListener
+
+通过MvcEvent::EVENT_ROUTER_STARTUP事件触发事件监听类Tiny\MVC\Event\DaemonEventListener
 
 ```php
  
- // 监听命令行参数--daemon 是否开启打包器流程
+ // 监听命令行参数--daemon 是否开启守护进程
  
  // 获取daemon的配置节点 profile.php中的build.path配置
  
@@ -84,8 +86,8 @@ Daemon的事件监听实现流程
   $this->response->end(); // 终止
 ```
 
-profile.php 配置
-----
+### Daemon在profile.php的配置项
+
 ```php
 /**
  * 守护进程的基本设置
@@ -141,6 +143,9 @@ $profile['daemon']['daemons'] = [
 ];
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
+
 [Console/命令行库:Tiny\Console\Daemon](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/daemon.md)    
 [Event/事件:Tiny\MVC\Event](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/event.md)  

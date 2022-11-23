@@ -1,11 +1,13 @@
 Builder 打包器
 ====
 
-打包器基于Phar扩展实现， 需要安装phar扩展;
-并在php.ini中将phar.readonly = On 更改为phar.readonly  = Off。
+打包器通过PHP的Phar扩展实现
+* 需要安装phar扩展;
+* 并在php.ini中将phar.readonly = On 更改为phar.readonly  = Off。`生产环境下需要phar.readonly = On`
 
 ### 示例
-```
+
+```shell
 // 使用默认配置 build/builder/tinyphp.php
 php public/index.php --build
 
@@ -14,8 +16,8 @@ php tinyphp.phar
 
 ```
 
-Application内的打包器初始化
-----
+### Application内的打包器初始化
+
 通过Application中属性实例Properties的执行构造函数时，获取打包器配置，并注册到事件监听器中。 
 
 ```php
@@ -60,8 +62,7 @@ namespace Tiny\MVC\Application;
     }    
 ```
 
-打包器的事件监听实现流程
-----
+### 打包器的事件监听实现流程
 
 通过MvcEvent::EVENT_ROUTER_STARTUP事件触发事件监听类Tiny\MVC\Event\BuilderEventListener
 
@@ -78,8 +79,8 @@ namespace Tiny\MVC\Application;
   new \Tiny\Build\Builder($buildOptions))->run();
 ```
 
-profile.php 配置
-----
+### Builder 在profile.php内的配置项
+
 ```php
 /**
  * 打包器
@@ -113,18 +114,20 @@ $profile['builder']['config_path'] = 'build/config';
 $profile['builder']['profile_path'] = 'build/profile';
 ```
 
-通过builder.path定义的打包器配置文件说明
-----
+### 通过builder.path定义的打包器配置文件说明
+
 ```
 $profile['builder']['path'] = 'build/builder';   
 ```
 
 该路径下每个.php配置文件都可以读取配置并单独打包成一个可执行文件
 例如：
+
 ```php
 build/builder/tinyphp.php
 build/builder/tinyphp1.php
 ```
+
 ```php
 /**
  * 返回一个单文件打包配置
@@ -173,6 +176,8 @@ return [
 ];
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
 [Build/打包:Tiny\Build](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/build.md)    
 [Event/事件:Tiny\Event](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/event.md)   

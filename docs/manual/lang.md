@@ -1,7 +1,10 @@
 Lang 语言包
 ====
-   当前Application实例的Lang实例   
-   通过profile.php的lang.path配置路径，默认为application/lang;   
+
+实现多语言功能
+
+当前Application的Tiny\Lang\Lang的实例   
+可通过profile.php的lang.path配置语言文件的路径，默认为application/lang;   
 
 ### Lang的实例获取
 ```php
@@ -37,8 +40,7 @@ public function getLangByAlias(ContainerInterface $container)
 }
 ```
 
-Lang 的使用
-----
+### Lang 的使用
 
 ```php
 // 通过.分隔子节点
@@ -54,11 +56,11 @@ $lang['default.a.b'];
 $lang->getData();
 
 ```
-#### 注意： Lang的配置数据无法动态修改
+`注意： Lang的配置数据无法动态修改`
 
 
-Lang 在Application内的实例化
-----
+### Lang 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -108,8 +110,8 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-profile.php 配置
-----
+### profile.php 配置
+
 ```php
 /**
  * Application的语言包设置
@@ -131,5 +133,8 @@ $profile['lang']['path'] = 'lang/';          // 存放语言包的目录
 $profile['lang']['cache']['enabled'] = true; // 配置模块缓存设置 提高性能
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
+
 [Lang/语言类:Tiny\Lang\Lang](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/lang.md)

@@ -1,9 +1,10 @@
 Debug配置
 ====
-> Debug仅在当前Application实例的生命周期中存在。
 
-profile.php中开启
----
+Debug仅在当前Application实例的生命周期中存在。
+输出各种调试信息
+
+### 在profile.php中开启
 
 ```php
 $profile['debug']['enabled'] = true;      // 是否开启调试模式: bool FALSE 不开启 | bool TRUE 开启
@@ -17,8 +18,8 @@ $profile['debug']['cache']['enabled'] = true; // 是否在debug模式下启用�
 $profile['debug']['console'] = false;   // web环境下 debug信息是否通过javascript的console.log输出在console
 ```
 
-通过调用application实例开启/关闭
----
+### 通过调用application实例开启/关闭
+
 
 ```php
 
@@ -44,8 +45,7 @@ public function indexAction()
 }
 ```
 
-Debug的实现方式： 通过实现EventListener接口实现
-----
+### Debug的实现方式： 通过实现EventListener接口实现
 
 通过触发 MvcEvent的onEndRequest()事件 开始处理调试数据，并注入到$app->response应用响应实例中去;
 
@@ -61,4 +61,8 @@ $this->app->response->appendBody($debugContent);
 
 ```
 
-> 具体参考库 Tiny\MVC\Event\DebugEventListener
+具体参考库 
+----
+----
+
+Tiny\MVC\Event\DebugEventListener

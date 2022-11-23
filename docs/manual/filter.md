@@ -2,10 +2,11 @@ Filter 过滤器
 ====
 
 当前Application实例的Filter实例
-主要作用于外部数据输入时的过滤，防止注入和渗透。
-通过魔法函数 $request->formatInt()的方式调用;
+* 主要作用于外部数据输入时的过滤，防止注入和渗透。
+* 主要通过魔法函数 $request->formatInt()的方式调用;
 
 ### Filter的实例获取
+
 ```php
 
 // 支持参数注入和自动注解
@@ -39,8 +40,8 @@ public function getFilterByAlias(ContainerInterface $container)
 }
 ```
 
-Filter 的使用
-----
+### Filter 的使用
+
 
 ```php
 // 通过.分隔子节点
@@ -53,10 +54,11 @@ echo $request->get->formatInt('id', 0);
 // output 34234
 ```
 
-Filter 在Application内的实例化
-----
+### Filter 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
+可根据不同运行环境，启用不同的过滤器，主要为Web/cli
 
 ```php
 namespace Tiny\MVC\Application;
@@ -102,8 +104,8 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-profile.php 配置
-----
+### Filter在profile.php内的配置项
+
 ```php
 /**
  * application的过滤器配置
@@ -127,5 +129,7 @@ $profile['filter']['console'] = \Tiny\Filter\ConsoleFilter::class;
 $profile['filter']['filters'] = [];
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
 [Filter/过滤器:Tiny\Filter\Filter](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/filter.md)

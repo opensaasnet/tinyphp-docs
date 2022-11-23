@@ -6,7 +6,10 @@ EventManager 事件管理
 * 事件监听器 EventListener,定义所有触发事件的委托函数。   
 * 事件Event, 定义该事件触发对应的事件监听器EventListener。   
 
-### EventManger主要由两个关键的成员函数构成,`addListener`,`triggerEvent`;
+### EventManger的实现
+
+主要由两个关键的成员函数构成,`addListener`,`triggerEvent`
+
 ```php
 class EventManager
 {
@@ -28,7 +31,8 @@ class EventManager
     
 ```
 
-### EventListener 主要是对事件委托的函数定义，所有事件监听器均需继承EventListenerInterface接口。
+EventListener 主要是对事件委托的函数定义，所有事件监听器均需继承EventListenerInterface接口。
+
 ```php
 /**
  * 异常事件监听句柄接口
@@ -49,9 +53,10 @@ interface ExceptionEventListener extends EventListenerInterface
 }
 ```
 
-### Event事件是一系列委托触发EventListenerInterface成员函数的集合，定义有两种方式。
-    * EventListener的类名，触发该事件，将会触发该EventListener所有接口的成员函数。
-    * EventListener的类名+ '.' + 该EventListener的指定成员函数名称，触发该事件，只会触发符合对应EventListener的指定成员函数名称。
+Event事件是一系列委托触发EventListenerInterface成员函数的集合，定义有两种方式。
+* EventListener的类名，触发该事件，将会触发该EventListener所有接口的成员函数。
+* EventListener的类名+ '.' + 该EventListener的指定成员函数名称，触发该事件，只会触发符合对应EventListener的指定成员函数名称。
+
 ```php
 /**
  * 事件
@@ -100,9 +105,8 @@ class MvcEvent extends Event
 }
 ```
 
-完整的事件管理流程。
- ----
- 一个完整的事件管理流程，包括事件的监听器添加，触发事件，事件处理。
+### 完整的事件管理流程。
+ 一个完整的事件管理流程，包括`事件的监听器添加`，`触发事件`，`事件处理`。
 
 ```php
 // ApplicationBase 实现了ExceptionEventListener;
@@ -134,4 +138,8 @@ abstract class ApplicationBase implements ExceptionEventListener
 }
 ```
 
-可参考标准库 [运行时环境/Tiny\Runtime](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
+可参考标准库 
+----
+----
+
+[运行时环境/Tiny\Runtime](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)

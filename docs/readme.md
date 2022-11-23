@@ -1,33 +1,37 @@
-TinyPHP Framework for PHP
+TinyPHP
 ====
 
-tinyphp v2.0.0
+Tinyphp是基于 TinyPHP Framework 的脚手架。
+
+### TinyPHP Framework
+项目地址: [https://github.com/tinyphporg/tinyphp-framework](https://github.com/tinyphporg/tinyphp-framework)     
+* 基于敏捷开发理念的PHP MVC框架;   
+* 可应用高并发高性能的生产环境，经过10亿PV级别的生产实践检验;   
+* 可基于TinyPHP-UI 快速开发响应式的H5/PC Web应用;   
+* 支持分布式的RPC和微服务处理；      
+* 支持Web/Console/RPC等运行环境，包括单一命令行文件打包，多任务的服务端守护进等。     
+
+适用场景
 ----
-
-+ 基于tinyphp framework v2.0.0 [https://github.com/tinyphporg/tinyphp-framework](https://github.com/tinyphporg/tinyphp-framework)
-  
-> 经过日PV十亿级别生产环境检验；  
-> 应用于高并发高性能的生产环境；
-> 支持分布式的RPC微服务处理；    
-> 适用于 Web/Console/RPC等运行环境，包括单一命令行文件打包，多任务的服务端守护进等。   
-
-tinyphp-framework的适用场景与理念
----- 
-* 客户端应用(IOS/Android/H5/小程序)的API接口开发：
+* 客户端应用(IOS/Android/小程序的API接口开发：
     * 高性能，大并发。
-    * 快速开发。
-    * 支持分布式RPC微服务架构。
+    * 敏捷开发。
+    * 支持分布式RPC微服务架构。   
     
-*  Web管理后台：
+*  H5/Web应用:
+    * 响应式设计，提供各种成熟的UI组件和页面，极大减少UI和设计的人力投入。
     * 适用于PHP全栈工程师，及不具备UI设计师和前端工程师的研发团队。
-    * 集成了tinyphp-ui前端框架，只需少量的JS前端代码。 
+    * 集成了tinyphp-ui前端框架，只需少量的JS前端代码。   
+
+* 10人以下创业团队敏捷开发:
+    * 敏捷开发
+    * UI复用
+    * 产品快速成型。   
     
-* 大规模团队协作：
-    * 10-100+人以上的研发团队。
-    * 创业团队，产品快速成型，可在较少的研发人力成本下进行高效的敏捷开发。
-    * 适用于具备在大规模的高性能应用场景下，通过PHP解决大多数复杂业务的架构。
-    * 可将大规模复杂应用的后端语言有效控制为PHP一种后端开发语言，有效降低项目维护成本和团队管理难度。   
-    
+* 100+人研发团队协作:
+    * 支持RPC和微服务部署，适用于大规模的高性能高并发应用场景
+    * 可将大型架构的多种后端语言需求有效控制为PHP一种后端开发语言，有效降低项目的人力维护成本和团队管理难度。    
+
 快速开始
 ----
 ```shell
@@ -45,32 +49,33 @@ php public/index.php --daemon=stop  //关闭
 
 #配置文件 
 application/config/profile.php
-``` 
+```
+ 
 核心组件
-====
+----
+* TinyPHP Framework v2.0 
+    * 框架地址：   [https://github.com/tinyphporg/tinyphp-framework](https://github.com/tinyphporg/tinyphp-framework)    
 
-### tinyphp-framework v2.0 
-+ 框架地址：   [https://github.com/tinyphporg/tinyphp-framework](https://github.com/tinyphporg/tinyphp-framework)    
+* tinyphp-docs
+    * 中文文档: 使用手册、标准库。  
+    * 项目地址: [https://github.com//tinyphp-docs](https://github.com/tinyphporg/tinyphp-docs)   
 
-### tinyphp-docs
-+ 中文文档: 使用手册、标准库。  
-+ 项目地址: [https://github.com//tinyphp-docs](https://github.com/tinyphporg/tinyphp-docs)   
+* tinyphp-ui  
+    * 前端UI组件库: webpack5+bootstrap5+jquery...     
+    * 项目地址： : [https://github.com/tinyphporg/tinyphp-ui](https://github.com/tinyphporg/tinyphp-ui)  
 
-### tinyphp-ui  
-+ 前端UI组件库: webpack5+bootstrap5+jquery...     
-+ 项目地址： : [https://github.com/tinyphporg/tinyphp-ui](https://github.com/tinyphporg/tinyphp-ui)  
+* lnmp-utils   
+    * Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包, 适用于生产环境。    
+    * 项目地址: https://github.com/tinyphporg/lnmp-utils
 
-### lnmp-utils   
-+ Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包, 适用于生产环境。    
-+ 项目地址: https://github.com/tinyphporg/lnmp-utils
-
-快速构建运行环境
+运行环境
+----
 ----
 
 ### CentOS X64 7.4+
-> 适应于生产环境，依赖于lnmp-utils。   
-> lnmp-utils: Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包。    
-> 项目地址: https://github.com/tinyphporg/lnmp-utils    
+适应于生产环境，依赖于lnmp-utils。   
+lnmp-utils: Linux(CentOS7X_64) +openresty(nginx)+Mysql+PHP+Redis一键安装包。    
+项目地址: https://github.com/tinyphporg/lnmp-utils    
 
 ```shell
 git clone https://github.com/tinyphporg/lnmp-utils.git
@@ -79,7 +84,7 @@ cd ./lnmp-utils
 ```
 
 ### docker
->  适应于开发环境
+ 适应于开发环境
 
 ```shell
 #可更改/data/workspace/tinyphp为自定义IDE工作目录
@@ -108,27 +113,17 @@ php public/index.php
 ```
 
 中文手册
----- 
-> 本框架的编码规范遵守PSR规范标准，仅少数细节做灵活调整。       
+-----
+本框架的编码规范遵守PSR规范标准，仅少数细节做灵活调整。       
 
-* [环境搭建/lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
-* [Demo/tinyphp: http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)
-* 编码规范
-  * [文件结构](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_file.md)   
-  * [程序的排版](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_program_typesetting.md)    
-  * [命名规则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_rules.md)  
-  * [表达式和基本语句](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_expression.md)  
-  * [常量](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding/constant.md)  
-  * [函数设计](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding/function.md)  
-  * [IDE的选择](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_ide.md)  
-  * [编码规范的一些示例](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding_example.md)  
-* 数据库查询/设计/操作规范
-  * [查询规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_select.md)
-  * [库和表的规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_dbtable.md)
-  * [数据库设计原则](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_design.md)
-  * [数据库的配置优化](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db_optimization.md)
-* [团队协作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/team.md)
-* 框架使用手册
+* 快速开始
+    * [环境搭建/lnmp-utils: http://github.com/tinyphporg/lnmp-utils.git](http://github.com/tinyphporg/lnmp-utils.git)
+    * [Demo/tinyphp: http://github.com/tinyphporg/tinyphp.git](http://github.com/tinyphporg/tinyphp.git)
+* 代码规范
+    * [编码规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/coding.md)   
+    * [数据库操作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/db.md)
+    * [团队协作规范](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/standard/team.md)
+* 使用手册
    * [Index/入口文件:    public/index.php](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/index.md)      
    * [Runtime/运行时环境: runtime/](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime.md)    
       * [Environment/运行时环境参数](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/runtime_env.md)  
@@ -176,5 +171,3 @@ php public/index.php
     * [Tiny\MVC：MVC](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
     * [Tiny\Net：网络](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/net.md)
     * [Tiny\String：字符处理](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/string.md) 
-   
-* [UI库参考](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/ui/)   

@@ -1,14 +1,15 @@
 Dispatcher 派发器
-==== 
+====
 
 MVC的控制流程主要包括: `请求Request`, `引导Bootstrap`, `路由Router`，`派发Dispatcher`，`执行Action`，`视图渲染Viewer`, `响应Response`.
 
-Dispatch 派发
-----
 
-* Application派发的主要流程是从Request获取经过路由匹配的Module, Controller，Action, 并通过派发器(Dispatcher)执行派发动作。   
-    * 控制器的匹配主要通过路由匹配实现，否则使用默认的模块名，控制器名称和动作名。   
-    * Action分为两种，名称后缀带Action的动作函数,及普通的成员函数。   
+### Dispatcher的实例化
+
+Dispatcher的主要流程是从Request获取经过路由匹配的Module, Controller，Action, 并通过派发器(Dispatcher)执行派发动作。   
+* 控制器的匹配主要通过路由匹配实现，否则使用默认的模块名，控制器名称和动作名。   
+* Action分为两种，名称后缀带Action的动作函数,及普通的成员函数。   
+
 ```php
 class ApplicationBase
 {
@@ -32,9 +33,11 @@ class ApplicationBase
 }
 ```
 
-* 派发器的构建主要包括获取控制器的实例，并执行动作。   
-    * 一个Action的执行包括三个动作,beginExceute, nameAction,endExceute;   
-    * BegineExceute的执行结果如果是false,则不会执行Action和engExceute动作。  
+### Dispatcher的执行
+派发器的构建主要包括获取控制器的实例，并执行动作。   
+* 一个Action的执行包括三个动作,beginExceute, nameAction,endExceute;   
+* BegineExceute的执行结果如果是false,则不会执行Action和engExceute动作。  
+
 ```php
 class Dispatcher
 {

@@ -1,10 +1,12 @@
 Cookie
 ====
-   基于WebApplication的Cookie实例   
-   通过profile.php的cookie配置。
+
+基于WebApplication的Cookie实例   
+通过profile.php的cookie配置。
 
 ### Cookie的实例获取
-#### 为了保持Model的无状态模式，禁止在模型层调用Cookie;
+
+`为了保持Model的无状态模式，禁止在模型层调用Cookie;`
 
 ```php
 
@@ -39,8 +41,8 @@ public function getCookieByAlias(ContainerInterface $container)
 }
 ```
 
-Cookie 的使用
-----
+### Cookie 的使用
+
 
 ```php
 // get
@@ -58,8 +60,8 @@ $cookie->set("name", "tinyphp", "tinyphp.org");
 ```
 
 
-Cookie 在Application内的实例化
-----
+### Cookie 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -90,8 +92,8 @@ namespace Tiny\MVC\Application;
 }
 ```
 
-profile.php 配置
-----
+### Cookie在profile.php内的配置项
+
 ```php
 /**
  * HTTP COOKIE设置
@@ -120,6 +122,9 @@ $profile['cookie']['prefix'] = '';
 $profile['cookie']['encode'] = false;
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
+
 [Web/HttpCookie:Tiny\MVC/Web/Cookie](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/mvc.md)
 

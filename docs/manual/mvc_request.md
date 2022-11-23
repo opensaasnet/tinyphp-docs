@@ -1,15 +1,18 @@
 Request 请求实例
 ====
 
-* Request通过Application的__construct()内初始化。   
-* Web环境下的WebRequest管理所有外部输入参数，包括$_GET, $_POST,$_SERVER, $_COOKIE, $_REQUEST, $_ENV, $_FILE;   
-* Console环境下的ConsoleRequest管理命令行参数， 包括$_arg等。   
-* 为了符合安全和框架的编码规范，除非通过Request实例引用外部参数，禁止使用以上全局变量。   
+Request通过Application的__construct()内初始化。   
 
-Request的实例获取
-----
+Web环境下的WebRequest管理所有外部输入参数，包括$_GET, $_POST,$_SERVER, $_COOKIE, $_REQUEST, $_ENV, $_FILE;   
 
-### 为保持Model的无状态模式，Request禁止在Model层内调用。
+Console环境下的ConsoleRequest管理命令行参数， 包括$_arg等。   
+
+`为了符合安全和框架的编码规范，非特殊情况，除非通过Request实例引用外部参数，禁止使用以上全局变量$_GET, $_POST,$_SERVER, $_COOKIE, $_REQUEST, $_ENV, $_FILE。   `
+
+
+### Request的实例获取
+
+`为保持Model的无状态模式，Request禁止在Model层内调用。`
 
 ```php
 
@@ -44,8 +47,7 @@ public function getRequestByAlias(ContainerInterface $container)
 }
 ```
 
-Request 的使用
-----
+### Request 的使用
 
 ```php
 // 通过.分隔子节点
@@ -69,11 +71,11 @@ $request->server;
 // file
 ```
 
-Request负责Application内MVC流程的外部请求参数管理。
-----
-* Request不破坏已有全局变量的参数。
-* Request管理路由匹配的控制器Controller,动作Action, 模块Moudle的参数名和值。
-* Request的参数初始化仅支持Readonly，不允许变更，防止多人协作时的外部参数意外变更。
+### Request负责Application内MVC流程的外部请求参数管理。
+
+Request不破坏已有全局变量的参数。
+Request管理路由匹配的控制器Controller,动作Action, 模块Moudle的参数名和值。
+`Request的参数初始化仅支持Readonly，不允许变更，防止多人协作时的外部参数意外变更。`
 
 ```php
 /**
@@ -123,5 +125,7 @@ class WebRequest extend Request
 }
 ```
 
-### 可参考标准库 
-[MVC/MVC:Tiny\MVC\Request](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/mvc.md)
+可参考标准库 
+-----
+-----
+[Tiny\MVC\Request](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/mvc.md)

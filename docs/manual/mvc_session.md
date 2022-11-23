@@ -1,10 +1,11 @@
 
 Session
 ====
-   WebApplication下的Session实例   
-   通过profile.php的session配置。
-  
-* 在Tiny\MVC\Web\Session的构造函数内，如果配置开启，则解析profile.php的session配置,并通过`ssession_set_save_handler`管理session句柄。   
+
+WebApplication下的Session实例     
+通过profile.php的session配置。    
+在Tiny\MVC\Web\Session的构造函数内，如果配置开启，则解析profile.php的session配置,并通过`ssession_set_save_handler`管理session句柄。    
+
 ```php
 /**
  * 服务器临时变量实例
@@ -68,11 +69,12 @@ class HttpSession implements \ArrayAccess, \Iterator,\Countable, SessionAdapterI
 ```
 
 ### Session的适配器
-* Session默认为本地文件存储，为了提高SESSION的读写性能，可以将SESSION的存储路径配置为内存文件系统。
-* 如果配置有分布式的负载均衡集群，需要共享全局SESSION，提高SESSION的读写性能，则需要使用SESSION适配器模式。
-* SESSION适配器目前支持Redis和Memcached，通过配置profile.php的session.dataid和session.adapter 从DATA数据层获取操作实例。
+Session默认为本地文件存储，为了提高SESSION的读写性能，可以将SESSION的存储路径配置为内存文件系统。   
+如果配置有分布式的负载均衡集群，需要共享全局SESSION，提高SESSION的读写性能，则需要使用SESSION适配器模式。   
+SESSION适配器目前支持Redis和Memcached，通过配置profile.php的session.dataid和session.adapter 从DATA数据层获取操作实例。   
 
-* 注册Session适配器
+#### 注册Session适配器
+
 ```php
     /**
      * 注册session适配器
@@ -90,7 +92,8 @@ class HttpSession implements \ArrayAccess, \Iterator,\Countable, SessionAdapterI
 ```
 
 ### Session的实例获取
-#### 为了保持Model的无状态模式，禁止在模型层调用Session;
+
+`为了保持Model的无状态模式，禁止在模型层调用Session`
 
 ```php
 
@@ -124,8 +127,7 @@ public function getSessionByAlias(ContainerInterface $container)
    return $container->get('app.session');
 }
 ```
-Session 的使用
-----
+### Session 的使用
 
 ```php
 // get
@@ -140,8 +142,7 @@ echo $session['name'];
 ```
 
 
-Session 在Application内的实例化
-----
+### Session 在Application内的实例化
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -169,8 +170,8 @@ namespace Tiny\MVC\Application;
 }
 ```
 
-profile.php 配置
-----
+### Session在profile.php内的配置项
+
 ```php
 /**
  * HTTP SESSION设置
@@ -210,6 +211,9 @@ $profile['session']['adapter'] = 'redis';
 $profile['session']['dataid'] = 'redis_session';
 ```
 
-### 可参考标准库   
+可参考标准库   
+-----
+-----
+
 [HttpSession:Tiny\MVC/Web/Session](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/mvc.md)
 

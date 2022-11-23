@@ -1,10 +1,12 @@
 Bootstrap
 ====
+引导类负责应用程序的引导和初始化工作，包括配置文件，日志，请求体，依赖注入的引导等。
 
-Application流程内的引导事件实现
-----
+
+### Application流程内的引导事件实现
 
 引导类是通过继承Tiny\MVC\ApplicationBase的Applicatioan实例初始化，$app->run()执行MVC流程的第一个动作。   
+
 ```php
 namespace Tiny\MVC;
 
@@ -39,14 +41,17 @@ class ApplicationBase
    
 }
 ```
-> 标准库参考  [Tiny\Event:事件库](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/event.md)   [Tiny\MVC\Event:MVC事件](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/mvc/event.md)
+标准库参考  
+* [Tiny\Event:事件库](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/event.md)   
+* [Tiny\MVC\Event:MVC事件](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/mvc/event.md)
 
 
-profile.php内的配置
-----
+### profile.php内的配置
+
  bootstrap.enabled = true|false 选择关闭或开启引导类。   
  bootstrap.event_listener  = class 可更改为自定义的实现了MvcEvent::EVENT_BOOTSTRAP监听事件的引导类     
- 也可通过profile.php的event.listeners[] = class配置添加。 
+ 也可通过profile.php的event.listeners[] = class配置添加。
+  
 ```php
 /**
  * Application引导类
@@ -65,9 +70,8 @@ $profile['bootstrap']['enabled'] = true;
 $profile['bootstrap']['event_listener'] = \App\Event\Bootstrap::class;
 ```
 
+### 引导类的实现  
 
-引导类的实现  
-----
 * 自定义Bootstrap类，需要继承基类Tiny\MVC\Bootstrap\Bootstrap; 该基类实现了事件监听接口Tiny\MVC\Event\BootstrapEventListenerInterface;   
 * 通过$app->bootstrap()触发MvcEvent::EVENT_BOOTSTRAP事件时，Tiny\MVC\Bootstrap\Bootstrap会调用成员函数onbootstrap进行事件处理, 其流程为：   
     * 寻找所有前缀带有init的成员函数，通过容器自动注入并执行。    
@@ -125,6 +129,7 @@ class Bootstrap extend Base
 }
 ```
 
-类参考 Tiny\MVC\Bootstrap\Bootstrap 
+标注库参考 
 ----
-
+----
+[Tiny\MVC\Bootstrap:引导](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/manual/lib/mvc.md) 

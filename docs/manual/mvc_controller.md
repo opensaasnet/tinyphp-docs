@@ -1,16 +1,19 @@
-Controller 控制器配置
-==== 
+Controller 控制器
+====
+
 
 MVC的控制流程主要包括: `请求Request`, `引导Bootstrap`, `路由Router`，`派发Dispatcher`，`执行Action`，`视图渲染Viewer`, `响应Response`.
 
-Controller 控制器
-----
 
-* 控制器的实现 
-      * Web环境下，需要继承Tiny\MVC\Controller\Controller
-      * Console环境下，需要继承Tiny\MVC\Controller\ConsoleController
-      * 他们的基类是Tiny\MVC\Controller\ControllerBase;
- * ControllerBase的实现包括三部分，自动注入的实例，视图处理函数和无视图情况下的输出，模型及其他类的自动注入。
+### Controller的实例化
+
+Web环境下，需要继承Tiny\MVC\Controller\Controller
+
+Console环境下，需要继承Tiny\MVC\Controller\ConsoleController
+
+他们的基类是Tiny\MVC\Controller\ControllerBase. Tiny\MVC\Controller\ControllerBase的实现包括三部分，`自动注入的实例`，`视图处理函数和无视图情况下的输出`，`模型及其他类的自动注入`。
+ 
+ 
 ```php
 /**
  * 控制器积类
@@ -56,8 +59,8 @@ abstract class ControllerBase
 }
 ```
 
-profile.php的控制器配置
-----
+### Controller在profile.php的配置项
+
 ```php
 /**
  * Application的响应实例配置
@@ -102,5 +105,9 @@ $profile['controller']['action_default'] = 'index';
 $profile['controller']['action_param'] = 'a';
 ```
 
-具体参考可见 [Tiny\MVC/MVC库](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
+可参考标准库
+-----
+-----
+
+ [Tiny\MVC/MVC](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/mvc.md)
 

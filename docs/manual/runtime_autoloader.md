@@ -1,9 +1,14 @@
 Autoloader 自动加载
 ====
 
-* Autoloader 通过Runtime实例化。
-* 在构造函数内，通过`spl_autoload_register`注册自动加载句柄处理函数。
-* 如果已经存在其他已注册`spl_autoload_register`的处理句柄，如`composer`，则将Tiny\Runtime\Autoloader注册为第一个处理句柄。   
+Autoloader 通过Runtime实例化。
+
+
+### Autoloader的实现
+
+在构造函数内，通过`spl_autoload_register`注册自动加载句柄处理函数。   
+如果已经存在其他已注册`spl_autoload_register`的处理句柄，如`composer`，则将Tiny\Runtime\Autoloader注册为第一个处理句柄。     
+
 ```php
 namespace Tiny\Runtime;
 
@@ -33,10 +38,11 @@ class Autoloader
 }
 ```
 
-* Autoloader 可以添加三种类文件的搜索方式
-  * 全局类映射
-  * 命名空间映射
-  * 类文件映射
+### Autoloader 三种类文件的搜索方式
+* 全局类映射
+* 命名空间映射
+* 类文件映射
+
 ```php
 
 // 全局类映射
@@ -64,8 +70,10 @@ $runtime->addToNamespacePathMap($namespace, $path);
 $className = `Tiny\Runtime\Runtime`;
 $runtime->addToClassPathMap($className, $path);
 ```
-* autoloader的类文件搜索规则。  
-* 当class加载不到时，触发$autoloader->loadClass($className)函数开始搜索路径;
+
+### Autoloader的类文件搜索规则。  
+当class加载不到时，触发$autoloader->loadClass($className)函数开始搜索路径;
+
 ```php
   // 首先在classmap中查找
   if (key_exists($className, $this->classPathMap)) {
@@ -87,11 +95,12 @@ $runtime->addToClassPathMap($className, $path);
   // 全部搜索不到则返回空。
 ```
 
-Autoloader 在Application的缓存机制
-----
-* Application运行initAutoloader时，会根据配置加载命名空间和类路径映射，并从ApplicationCache实例中取出缓存的类路径映射，添加入Autoloader的classPathMap;
-* 在结束Application运行时，会将所有加载过的类路径映射添加到ApplicationCache;
-* 在一定程度上，可以减少类文件的寻址性能损失。
+### Autoloader 在Application的缓存机制
+
+Application运行initAutoloader时，会根据配置加载命名空间和类路径映射，并从ApplicationCache实例中取出缓存的类路径映射，添加入Autoloader的classPathMap;
+在结束Application运行时，会将所有加载过的类路径映射添加到ApplicationCache;
+在一定程度上，可以减少类文件的寻址性能损失。
+
 ```php
     /**
      * 初始化应用程序的自动加载
@@ -145,4 +154,9 @@ Autoloader 在Application的缓存机制
         }
     }
 ```
-可参考标准库 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
+
+可参考标准库
+----
+----
+
+ [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)

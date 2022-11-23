@@ -1,8 +1,12 @@
 ExceptionHandler 异常处理
 ====
 
-* ExceptionHandler 通过Runtime实例化。
-* 在构造函数内，注入事件管理器 `EventManager`, 并通过`set_exception_handler` 和`set_error_handler`注册异常和错误处理句柄。   
+ExceptionHandler 通过Runtime实例化。
+
+### ExceptionHandler的实现
+
+在构造函数内，注入事件管理器 `EventManager`, 并通过`set_exception_handler` 和`set_error_handler`注册异常和错误处理句柄。  
+ 
 ```php
     /**
      * 初始化异常捕获句柄
@@ -20,7 +24,8 @@ ExceptionHandler 异常处理
     }
 ```
 
-* 通过EventManager::addListener注册实现ExceptionEventListener接口的实例，为委托异常处理句柄
+通过EventManager::addListener注册实现ExceptionEventListener接口的实例，为委托异常处理句柄    
+
 ```php
 abstract class ApplicationBase implements ExceptionEventListener
 {
@@ -34,7 +39,8 @@ abstract class ApplicationBase implements ExceptionEventListener
 }
 ```
 
-* 当异常发生时，通过EventManager::trigget(Event::EVENT_ONEXCEPTION) 触发异常事件;  
+当异常发生时，通过EventManager::trigget(Event::EVENT_ONEXCEPTION) 触发异常事件;  
+
 ```php
         // 触发onexception事件
         $event = new Event(Event::EVENT_ONEXCEPTION, [
@@ -47,7 +53,8 @@ abstract class ApplicationBase implements ExceptionEventListener
 
 
 
-* ApplicationBase的异常处理成员函数OnException
+ApplicationBase的异常处理成员函数OnException
+
 ```php
     /**
      * 异常触发事件
@@ -79,6 +86,8 @@ abstract class ApplicationBase implements ExceptionEventListener
     }
 ```
 
+可参考标准库 
+-----
+-----
 
-
-可参考标准库 [Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)
+[Tiny\Runtime/运行时环境](https://github.com/tinyphporg/tinyphp-docs/blob/master/docs/lib/runtime.md)

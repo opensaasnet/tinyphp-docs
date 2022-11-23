@@ -1,7 +1,7 @@
 Configuration 配置
 ====
    当前Application实例的Configuration实例   
-   通过profile.php的config.path配置路径，默认为application/config;   
+   可通过profile.php的config.path配置路径，默认为application/config;   
 
 ### Configuration的实例获取
 ```php
@@ -37,8 +37,8 @@ public function getConfigByAlias(ContainerInterface $container)
 }
 ```
 
-Configuration 的使用
-----
+### Configuration 的使用
+
 
 
 ```php
@@ -55,10 +55,10 @@ $config->get();
 $config['default.a.b'] = 'tinyphp';
 $config->set('default.a.b', 'tinyphp');
 ```
-#### 注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。
+`注意： configuration可通过set方式更改配置节点数据，但并不会持久化保存。`
 
-Configuration在Application内的实例化
-----
+
+### Configuration在Application内的实例化
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -113,8 +113,8 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-profile.php 配置
-----
+### Configuration在profile.php内的配置项
+
 ```php
 /**
  * 当前Application实例下的Configuration实例设置
@@ -137,5 +137,7 @@ $profile['config']['path'] = 'config/';
 $profile['config']['cache']['enabled'] = true;
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
 [Configaurtion/配置类:Tiny\Config\Configuration](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/configuration.md)

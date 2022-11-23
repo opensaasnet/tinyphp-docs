@@ -1,13 +1,15 @@
-数据层
+Data 数据层
 ====
 
-  Data是当前Application的Data实例
-  作为tinyphp管理所有外部数据源的数据层
+当前Application的Tiny\Data\Data实例
 
-Data的实例获取
-----
+作为Application管理所有外部数据源的数据层，为Configuration 配置，Cache缓存，Model模块层的提供数据源操作的抽象对象。
+可应用于Sesssion,数据库操作，外部数据获取等。
 
-### Data一般情况下只允许在model层获取实例和操作，不允许在控制器层和视图层中获取并操作
+### Data的实例获取
+
+`注意： Data一般情况下只允许在model/cache/configuration等底部获取实例和操作，不允许在控制器层和视图层中直接获取获取实例并操作。`
+
 
 ```php
 
@@ -41,8 +43,7 @@ public function getDataByAlias(ContainerInterface $container)
 }
 ```
 
-Data 的使用
-----
+### Data 的使用
 
 ```php
 // 通过数据源ID获取数据源操作实例
@@ -51,8 +52,8 @@ $this->data['default']->fetchall('SELECT * FROM user');
 
 ```
 
-Data 在Application内的实例化
-----
+### Data 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -92,8 +93,8 @@ Data 在Application内的实例化
     }
 ```
 
-profile.php 配置
-----
+### Data 在profile.php内的配置项
+
 ```php
 /**
  * 数据资源池配置
@@ -147,5 +148,8 @@ $profile['data']['sources'] = [
 ];
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
+
 [Data/数据层:Tiny\Data\Data](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/data.md)

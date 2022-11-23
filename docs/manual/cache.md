@@ -1,7 +1,9 @@
 Cache 缓存层
 ====
 
-当前Application实例的Cache实例
+当前Application实例的Cache实例。   
+提供数据缓存，包括模型层的缓存和全局缓存。   
+缓存层的数据源，可包括本地文件缓存File，本地共享内存缓存 Shmop，网络服务端缓存 如Redis/Memcache等，可自行扩展。   
 
 ### Cache的实例获取
 ```php
@@ -37,8 +39,7 @@ public function getCacheByAlias(ContainerInterface $container)
 }
 ```
 
-Cache 的使用
-----
+### Cache的使用
 
 ```php
 $cache->set('name', 'tinyphp');
@@ -50,8 +51,8 @@ $cache['default']->get('name');
 // output "tinyphp"
 ```
 
-Cache 在Application内的实例化
-----
+### Cache 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -109,8 +110,8 @@ namespace Tiny\MVC\Application;
     }
 ```
 
-profile.php 配置
-----
+### Cache在profile.php的配置项
+
 ```php
 /**
  * Application的缓存设置
@@ -196,5 +197,7 @@ $profile['cache']['application_storager'] = SingleCache::class;
 $profile['cache']['application_ttl'] = 60;
 ```
 
-### 具体参考可见   
+具体参考可见  
+-----
+-----
 [Cache/缓存:Tiny\Cache\Cache](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/lib/cache.md)

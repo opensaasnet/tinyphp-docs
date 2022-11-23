@@ -1,10 +1,9 @@
-日志收集器
+Logger 日志收集器
 ====
 
-Tiny\Log\Logger 日志采集器
-====
-   当前Application实例的Logger实例   
-   通过profile.php的logger.path配置日志存储路径 默认路径为runtime/log;   
+当前Application实例的Logger实例，实现日志的收集。   
+* 可通过profile.php的logger.path配置日志的本地存储路径 默认本地日志的存储路径为runtime/log。    
+* 支持本地日志文件存储，和syslog协议远程存储日志，其他协议可自行扩展。   
 
 ### Logger的实例获取
 ```php
@@ -40,15 +39,15 @@ public function getLoggerByAlias(ContainerInterface $container)
 }
 ```
 
-Logger 的使用
-----
+### Logger 的使用
+
 
 ```php
 $logger->write($id, $message, $priority);
 ```
 
-Logger 在Application内的实例化
-----
+### Logger 在Application内的实例化
+
 
 通过Application中的容器定义源 Tiny\MVC\Application\ApplicationProvider自动加载入容器。
 
@@ -88,8 +87,8 @@ Logger 在Application内的实例化
     }
 ```
 
-profile.php 配置
-----
+### Logger 在profile.php内的配置项
+
 ```php
 /**
  * application的日志配置
@@ -106,5 +105,7 @@ $profile['log']['writer'] = 'file';    /*默认可以设置file|syslog 设置类
 $profile['log']['path'] = '{runtime}/log/';
 ```
 
-### 具体参考可见   
+具体参考可见   
+-----
+-----
 [Logger/日志采集器:Tiny\Log\Logger](https://github.com/tinyphporg/tinyphp-dcos/blob/master/docs/manual/lib/log.md)
